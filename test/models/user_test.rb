@@ -1,7 +1,11 @@
 require 'test_helper'
+import reducers from '../../reducers';
 
 class UserTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test('reducers', () => {
+    let state;
+    state = reducers({}, {type:'@@router/LOCATION_CHANGE',payload:{pathname:'/users',search:'',hash:''}});
+    expect(state).toEqual({});
+  });
+
 end

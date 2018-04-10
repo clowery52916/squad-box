@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 
 export default class LandingPage extends Component {
 
@@ -7,8 +8,9 @@ export default class LandingPage extends Component {
     return (
       <div>
         <h2>Squad-Box</h2>
-        <p>The place where children and teens can come together in a social setting <br/>
-        and not worry about being contacted by sexual preditors.</p>
+        <Link to='/users'>Sign Up</Link>
+      <br/>
+        <Link to='/users/:id'>Login</Link>
 
       </div>
     );

@@ -6,6 +6,8 @@ import {ConnectedRouter} from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 import configureStore from './configureStore.js'
 import LandingPage from './components/LandingPage'
+import reducer from './reducers'
+import UserComponent from './components/UserComponent'
 
 
 const store = configureStore(history)
@@ -19,6 +21,7 @@ const Root = () => (
       <div>
 
         <Route exact path="/" component={LandingPage}/>
+        <Route path='/users' component={UserComponent}/>
       </div>
       </ConnectedRouter>
     </Provider>
