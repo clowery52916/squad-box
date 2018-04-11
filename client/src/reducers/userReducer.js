@@ -2,16 +2,16 @@ function userReducer(state = [], action) {
 
   switch (action.type) {
 
-    case 'GET_USERS':
-      return [...action.users]
+    case 'GET_USER_DATA':
+      return [...action.returnUsers]
 
-    case 'GET_SINGLE_USER':
-      return [action.user]
+    case 'GET_SINGLE_USER_DATA':
+      return [...action.returnUser]
 
     case 'CREATE_NEW_USER':
       return [
         ...state,
-        action.newUser
+        action.newUserInfo
       ]
 
     case 'EDIT_USER_INFO':

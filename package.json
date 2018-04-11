@@ -10,14 +10,22 @@
   },
   "dependencies": {
     "history": "^4.7.2",
+    "material-ui": "^1.0.0-beta.41",
     "npm": "^5.8.0",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-redux": "^5.0.7",
+    "react-redux-form": "^1.16.8",
     "react-router-redux": "^4.0.8",
+    "react-webcam": "^0.4.3",
+    "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-form": "^7.3.0",
     "redux-history": "^1.0.2",
     "redux-logger": "^3.0.6",
     "redux-push": "^1.0.4",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "superagent": "^3.8.2"
   },
   "devDependencies": {
     "jest": "^22.4.3"
