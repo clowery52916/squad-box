@@ -39,7 +39,7 @@ class SingleUser extends Component {
   }
 
   render() {
-    console.log("our user", this.props.match.params.user_id)
+    console.log("our user", this.props.match.params.userId)
     return (<div>
 
       <h3>User Profile</h3>

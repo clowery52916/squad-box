@@ -13,10 +13,12 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "1.1.4",
+    "react-semantic-redux-form": "^1.2.6",
     "react-webcam": "^0.4.3",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-push": "^1.0.4",
+    "semantic-ui-redux-form-fields": "^1.0.1",
     "styled-components": "^3.2.5"
   },
   "scripts": {

@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
-import {userPath} from './../actions/user.actions.js'
+import {userPath} from '../actions/user.actions.js'
+import axios from 'axios'
 
 class NewsFeed extends Component {
   componentWillMount() {

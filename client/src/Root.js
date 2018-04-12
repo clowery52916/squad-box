@@ -8,7 +8,7 @@ import { connectHistory } from 'redux-history';
 import configureStore from './configureStore.js'
 //routing to my componenents
 import LandingPage from './components/LandingPage'
-import UserLogin from './components/UserLogin'
+import LoginForm from './components/LoginForm'
 import NewsFeed from './components/NewsFeed'
 import SingleUser from './components/SingleUser'
 
@@ -18,11 +18,9 @@ console.log(store)
 
 const Root = () => (
   <Provider store={store}>
-
     <ConnectedRouter history={history}>
       <div>
         <Route exact path="/" component={LandingPage}/>
-        <Route exact path='/user' component={UserLogin}/>
         <Route exact path='/users' component={NewsFeed}/>
         <Route exact path='/users/:userId' component={SingleUser}/>
 
