@@ -6,8 +6,9 @@ import { Button, Form, Message } from 'semantic-ui-react'
 import {saveNewUser} from '../actions/user.actions.js'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
+import LoginForm from './LoginForm'
 
-class LoginForm extends Component {
+class SignUpForm extends Component {
   state = {
     user: {
       email: '',
@@ -44,12 +45,12 @@ class LoginForm extends Component {
   render() {
     if (this.state.redirectToAllUsers) {
       console.log("REDIRECTING TO SINGLE USER", this.state.createdUser.id)
-      return <Redirect to='/users' />
+      return <Redirect push="push" to={`/users/${this.state.createdUser.id}`}/>
     }
     return (<div>
       <form onSubmit={this.handleSubmit}>
         <div>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" htmlFor="userName">Email</label>
           <input onChange={this.handleChange} name="email" type="text" value={this.state.email}/>
         </div>
         <div>
@@ -60,8 +61,9 @@ class LoginForm extends Component {
           <label htmlFor="age">Age</label>
           <input onChange={this.handleChange} name="age" type="text" value={this.state.age}/>
         </div>
-        <button onClick={this.handleSignUp}>Log-in</button>
+        <button onClick={this.handleSignUp}>Sign Up</button>
       </form>
+<br/>
 
     </div>)
   }
@@ -70,4 +72,4 @@ const mapStateToProps = (state) => {
   return {newUser: state.newUser}
 }
 
-export default connect(mapStateToProps, {push, saveNewUser})(LoginForm);
+export default connect(mapStateToProps, {push, saveNewUser})(SignUpForm);

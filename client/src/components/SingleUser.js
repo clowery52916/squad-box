@@ -1,60 +1,44 @@
 import React, {Component} from 'react'
-import styled from 'styled-components'
 import {connect} from 'react-redux'
-import {getSingleUser} from '../actions/user.actions.js'
-import axios from 'axios'
 import {push} from 'react-router-redux'
+import styled from 'styled-components'
+import {singleUserPath, getSingleUser} from '../actions/user.actions.js'
+import EditUser from './EditUser'
+import axios from 'axios'
 
 
 class SingleUser extends Component {
 
-  componentWillMount() {
-    const userId = this.props.match.params.id;
-    this.props.getSingleUser(userId)
-
-  }
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      userId: {
-        id: this.props.match.params.userId,
-        name: nextProps.userId.name,
-        email: nextProps.userId.email,
-        password: nextProps.userId.pssword,
-        photo: nextProps.userId.photo,
-
-
-      }
-    })
-  }
-
-  state = {
-    userId: {
-      name: "",
-      email: "",
-      password: "",
-      photo: "",
-
-
-    }
-  }
 
   render() {
-    console.log("our user", this.props.match.params.userId)
     return (<div>
+      <h1>Profile</h1>
 
-      <h3>User Profile</h3>
-      <br/>
-      <img src={this.state.userId.photo} alt={this.state.userId.name}/>
-      <h1>{this.state.userId.email}</h1>
-      <h1>{this.state.userId.passsword}</h1>
+        <div>
+          <h3>Welcome Back {this.props.user.name}</h3>
+          <h3>Update your information</h3>
+          <h4>{this.props.user.age}</h4>
+          <h4>{this.props.user.email}</h4>
+          <img width={200} src={this.props.user.photo} alt={this.props.user.name} />
 
-      }
-    </div>);
+      </div>
+      <EditUser />
+    </div>)
   }
 }
-
-const mapStateToProps = (state) => {
-  return {userId: state.users}
+const mapStateToProps = (state, ownProps) => {
+  if (state.users.length === 0){
+    //Get all the users from API when going directly to this page
+  }
+  console.log(state)
+  console.log(ownProps)
+  const userId = ownProps.match.params.id
+  console.log(userId)
+  console.log(typeof userId)
+  const user = state.users.find(user => {
+    return user.id === parseInt(userId)
+  })
+  console.log(user)
+  return {user}
 }
-
-export default connect(mapStateToProps, {getSingleUser})(SingleUser);
+export default connect(mapStateToProps, {push, singleUserPath, getSingleUser})(SingleUser)

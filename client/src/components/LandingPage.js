@@ -4,6 +4,7 @@ import Webcam from 'react-webcam';
 import Webcam_Image from './Webcam_Image'
 import WebCamLogin from './WebCamLogin'
 import LoginForm from './LoginForm'
+import SignUpForm from './SignUpForm'
 
 export default class LandingPage extends Component {
 
@@ -13,6 +14,9 @@ export default class LandingPage extends Component {
       <div>
         <h2>Squad-Box</h2>
         <LoginForm />
+        <br/>
+        <br/>
+        <SignUpForm />
       <br/>
       </div>
     );

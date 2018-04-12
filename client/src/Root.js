@@ -22,7 +22,7 @@ const Root = () => (
       <div>
         <Route exact path="/" component={LandingPage}/>
         <Route exact path='/users' component={NewsFeed}/>
-        <Route exact path='/users/:userId' component={SingleUser}/>
+        <Route exact path='/users/:id' component={SingleUser}/>
 
       </div>
       </ConnectedRouter>

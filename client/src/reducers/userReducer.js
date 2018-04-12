@@ -6,7 +6,7 @@ function userReducer(state = [], action) {
       return [...action.returnUsers]
 
     case 'GET_SINGLE_USER_DATA':
-      return [...action.returnUser]
+      return [action.returnUser]
 
     case 'CREATE_NEW_USER':
       return [
