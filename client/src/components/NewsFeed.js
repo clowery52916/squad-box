@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
-import {userPath} from './../actions/user.actions.js'
+import {userPath, saveEditUser, singleUserPath} from '../actions/user.actions.js'
+import axios from 'axios'
 
 class NewsFeed extends Component {
   componentWillMount() {
@@ -10,32 +11,41 @@ class NewsFeed extends Component {
 console.log(userPath)
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.props.singleUserPath()
+    console.log(singleUserPath)
+  }
+  componentWillUpdate(nextProps, nextState) {
+    this.props.saveEditUser()
+    console.log(saveEditUser)
+  }
+  componentd
   render() {
     return (<div>
 
-      <button onClick={() => this.props.history.push(`/user/:id`)}>
+      {/* <div onClick={() => this.props.history.push(`/user/${user}`)}>
         Profile
-      </button>
-      <div>
-        <button onClick={() => this.props.history.push(`/users`)}>
-
-        </button>
       </div>
+      <div>
+        <button onClick={() => this.props.history.push(`/users/${user}`)}>
+        fuck off
+        </button>
+      </div> */}
         <h3>Add some friends!</h3>
       <div>
 
         {
-          this.props.users.map((user, i) => {
+          this.props.users.map((userId) => {
             return (
               <div>
 
-              <div onClick={() => this.props.history.push(`/users/${user.id}`)}>
-                <img width={200} src={user.photo} alt={user.name}/>
-                <br/> {user.name}
+              <div onClick={() => this.props.history.push(`/users/${userId.id}`)}>
+                <img width={200} src={userId.photo} alt={userId.name}/>
+                <br/> {userId.name}
                 <br/>
-                {user.email}
+                {userId.email}
                 <br/>
-                {user.password}
+                {userId.age}
               </div>
 
         </div> )
@@ -50,4 +60,4 @@ console.log(userPath)
 const mapStateToProps = (state) => {
   return {users: state.users}
 }
-export default connect(mapStateToProps, {push, userPath})(NewsFeed)
+export default connect(mapStateToProps, {push, userPath, singleUserPath, saveEditUser})(NewsFeed)

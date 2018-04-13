@@ -53,7 +53,7 @@ export function saveEditUser(saveEditUserInfo) {
   console.log(saveEditUserInfo)
   return function (dispatch) {
     return axios
-      .patch(`/api/users/${saveEditUserInfo.id}`, saveEditUserInfo)
+      .put(`/api/users/${saveEditUserInfo}`, saveEditUserInfo)
       .then((response) => {
         dispatch(editUser(saveEditUserInfo))
       })
