@@ -1,45 +1,89 @@
 import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
+import axios from 'axios'
+import styled from 'styled-components'
+import { Button, Form, Message } from 'semantic-ui-react'
+import {saveNewUser, saveEditUser, singleUserPath} from '../actions/user.actions.js'
 import {connect} from 'react-redux'
-import {editUser, saveEditUser} from '../actions/user.actions'
+import {push} from 'react-router-redux'
+import uuid from 'uuid'
+
 class EditUser extends Component {
   state = {
-    user: ''
+    user: {
+      email: '',
+      password: '',
+      age: '',
+      photo:'',
+      name:''
+    },
+    redirectToSingleUser: false
   }
 
-  handleChange = (event) => {
-    this.setState({user: event.target.value})
-  }
-
-  handleSubmit = (event) => {
-    event.preventDefault()
-    this.props.editUser(this.props.id, this.state.user)
-    this.setState({user: ''})
-  }
-  render() {
-    return (<form onSubmit={this.handleSubmit}>
-      <label htmlFor="name">Edit Name
-      </label>
-      <input type="text" onChange={this.handleChange} value={this.state.user}/>
-      <button type="submit">Submit</button>
-      <label htmlFor="age">Edit Age
-      </label>
-      <br/>
-      <input type="text" onChange={this.handleChange} value={this.state.user}/>
-      <button type="submit">Submit</button>
-      <label htmlFor="email">Edit Email
-      </label>
-      <br/>
-      <input type="text" onChange={this.handleChange} value={this.state.user}/>
-      <button type="submit">Submit</button>
-      <label htmlFor="password">Edit Password
-      </label>
-      <br/>
-      <input type="text" onChange={this.handleChange} value={this.state.user}/>
-      <button type="submit">Submit</button>
-      <input onChange={this.handleChange} value={this.state.user}/>
-      <button onClick={this.handleClick}>Add New Photo</button>
-    </form>)
-  }
+  // saveEditUser = () => {
+  //   axios.put('/api/users', {user: this.state.user}).then((res) => {
+  //     this.setState({redirectToSingleUser: true, createdUser: res.data})
+  //   })
+  // }
+  editUser = () => {
+    axios.put(`/api/users/:id`, {user: this.state.user}).then((res) => {
+    this.setState({redirectToSingleUser: true, user: res.data})
+  })
 }
 
-export default connect(null, {editUser, saveEditUser})(EditUser)
+
+
+  handleChange = (e) => {
+    const user = {
+      ...this.state.user
+    }
+    user[e.target.name] = e.target.value
+    this.setState({user})
+    console.log(user)
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.setState.saveEditUserInfo
+    console.log('Edit User info')
+  }
+
+
+  handleUpdate = (e) => {
+    const editUser = {
+      ...this.props.editUser
+    }
+
+  }
+
+
+  render() {
+    if (this.state.redirectToSingleUser) {
+      console.log("UPDATING  USER", this.state.user.id)
+      return <Redirect to='/users' />
+    }
+    return (<div>
+      <form onSubmit={this.handleSubmit}>
+        <div>
+          <label htmlFor="email">Email</label>
+          <input onChange={this.handleChange} name="email" type="text" value={this.state.email}/>
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input onChange={this.handleChange} name="password" type="text" value={this.state.password}/>
+        </div>
+        <div>
+          <label htmlFor="age">Age</label>
+          <input onChange={this.handleChange} name="age" type="text" value={this.state.age}/>
+        </div>
+        <button onClick={this.handleSignUp}>Log-in</button>
+      </form>
+
+    </div>)
+  }
+}
+const mapStateToProps = (state) => {
+  return {editUser: state.editUser}
+}
+
+export default connect(mapStateToProps, {push, saveEditUser, singleUserPath})(EditUser);

@@ -12,6 +12,7 @@ import LoginForm from './components/LoginForm'
 import NewsFeed from './components/NewsFeed'
 import SingleUser from './components/SingleUser'
 
+
 const history = createHistory()
 const store = configureStore(history)
 console.log(store)

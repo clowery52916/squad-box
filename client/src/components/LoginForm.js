@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 import { Button, Form, Message } from 'semantic-ui-react'
-import {saveNewUser} from '../actions/user.actions.js'
+import {saveNewUser, saveEditUser, singleUserPath} from '../actions/user.actions.js'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 
@@ -15,7 +15,10 @@ class LoginForm extends Component {
       age: ''
     },
     createdUser: {},
+    singleUser: {},
+    editUser: {},
     redirectToAllUsers: false,
+    redirectToSingleUser: false
   }
 
   saveNewUser = () => {
@@ -23,6 +26,17 @@ class LoginForm extends Component {
       this.setState({redirectToAllUsers: true, createdUser: res.data})
     })
   }
+  singleUserPath = () => {
+    axios.get('/api/users/:id', {user: this.state.user}).then((res) => {
+    this.setState({redirectToSingleUser: true, singleUser: res.data})
+  })
+}
+
+saveEditUser = () => {
+  axios.patch('/api/users/:id', {editUser: this.state.editUser}).then((res) => {
+    this.setState({ editUser: res.data})
+  })
+}
 
   handleChange = (e) => {
     const user = {
@@ -34,12 +48,21 @@ class LoginForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    this.newUser()
     console.log('User submitted info')
   }
   handleSignUp = (e) => {
     e.preventDefault()
     this.saveNewUser()
   }
+
+  handleUpdate = (e) => {
+    const editUser = {
+      ...this.props.editUser
+    }
+
+  }
+
 
   render() {
     if (this.state.redirectToAllUsers) {
@@ -70,4 +93,4 @@ const mapStateToProps = (state) => {
   return {newUser: state.newUser}
 }
 
-export default connect(mapStateToProps, {push, saveNewUser})(LoginForm);
+export default connect(mapStateToProps, {push, saveNewUser, saveEditUser, singleUserPath})(LoginForm);

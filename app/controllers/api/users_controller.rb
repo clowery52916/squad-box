@@ -14,20 +14,20 @@ class Api::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(params[:user])
     puts @user
     render json: @user
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find(params[:user])
     @user.update!(user_params)
 
     render json: @user
   end
 
   def destroy
-    @user = User.find(params[:id]).delete
+    @user = User.find(params[:user]).delete
 
     render status: :ok
   end

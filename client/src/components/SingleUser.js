@@ -17,12 +17,12 @@ class SingleUser extends Component {
         <div>
           <h3>Welcome Back {this.props.user.name}</h3>
           <h3>Update your information</h3>
-          <h4>{this.props.user.age}</h4>
-          <h4>{this.props.user.email}</h4>
+          <h4>age: {this.props.user.age}</h4>
+          <h4>email: {this.props.user.email}</h4>
+          <h4>Update your photo: </h4>
           <img width={200} src={this.props.user.photo} alt={this.props.user.name} />
-
+        <EditUser/>
       </div>
-      <EditUser />
     </div>)
   }
 }

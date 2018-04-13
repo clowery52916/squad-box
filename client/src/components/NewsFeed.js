@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
-import {userPath} from '../actions/user.actions.js'
+import {userPath, saveEditUser, singleUserPath} from '../actions/user.actions.js'
 import axios from 'axios'
 
 class NewsFeed extends Component {
@@ -11,6 +11,15 @@ class NewsFeed extends Component {
 console.log(userPath)
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.props.singleUserPath()
+    console.log(singleUserPath)
+  }
+  componentWillUpdate(nextProps, nextState) {
+    this.props.saveEditUser()
+    console.log(saveEditUser)
+  }
+  componentd
   render() {
     return (<div>
 
@@ -51,4 +60,4 @@ console.log(userPath)
 const mapStateToProps = (state) => {
   return {users: state.users}
 }
-export default connect(mapStateToProps, {push, userPath})(NewsFeed)
+export default connect(mapStateToProps, {push, userPath, singleUserPath, saveEditUser})(NewsFeed)

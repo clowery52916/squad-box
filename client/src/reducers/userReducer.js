@@ -6,7 +6,7 @@ function userReducer(state = [], action) {
       return [...action.returnUsers]
 
     case 'GET_SINGLE_USER_DATA':
-      return [action.returnUser]
+      return [...action.returnUser]
 
     case 'CREATE_NEW_USER':
       return [
@@ -15,7 +15,7 @@ function userReducer(state = [], action) {
       ]
 
     case 'EDIT_USER_INFO':
-      return updateUserInfo(state, action)
+      return updateUserInfo(state, action.editUserInfo)
 
     case 'DELETE_USER':
       return state.filter(user => user.id !== action.deleteUserById)
@@ -25,9 +25,9 @@ function userReducer(state = [], action) {
   }
 }
 
-function updateUserInfo(state, action) {
+function updateUserInfo(state: action, saveEditUserInfo) {
   return state.map((user) => {
-    if (user.id !== action.editUser.id) {
+    if (user.id !== action.saveEditUserInfo.id) {
       return user
     }
     return {
