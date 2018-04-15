@@ -34,10 +34,10 @@ class Posts extends Component {
     return (<PostContainer>
       <PostStyle>
         <div>
-          <h1>{this.state.user.title}</h1>
+          <h1>{this.props.user}</h1>
         </div>
         <div>
-          <p>{this.state.user.user}</p>
+          <p>{this.props.user}</p>
         </div>
       </PostStyle>
       {
@@ -74,3 +74,28 @@ class Posts extends Component {
   }
 }
 export default Posts
+
+
+// import React, { Component } from 'react';
+// import Photo from './Photos';
+// import Comments from './Comments';
+//
+// class Posts extends Component {
+//   render() {
+//     const { postId } = this.props.params;
+//
+//     const i = this.props.posts.findIndex((post) => post.code === postId);
+//     const post = this.props.posts[i];
+//
+//     const postComments = this.props.comments[postId] || [];
+//
+//     return (
+//       <div className="single-photo">
+//         <Photo i={i} post={post} {...this.props} />
+//         <Comments postComments={postComments} {...this.props} />
+//       </div>
+//     )
+//   }
+// }
+//
+// export default Posts;

@@ -1,34 +1,39 @@
-import uuid from 'uuid'
-
-export function addPost (comment) {
-  return {
-    type: 'ADD_POST',
-    todo: {
-      id: uuid(),
-      comment: comment,
-      completed: false
+export function  increment (index) {
+    return {
+        type: 'INCREMENT_LIKES',
+        index
     }
-  }
+}
+export function  addPost (postId, author, comment) {
+    return {
+        type: 'ADD_POST',
+        postId,
+        author,
+        comment
+    }
 }
 
-export function editPost (id, comment) {
-  return {
-    type: 'EDIT_POST',
-    id,
-    comment
-  }
+export function editPost (postId, i) {
+    return {
+        type: 'EDIT_POST',
+        postId,
+        i
+    }
 }
 
-export function togglePost (id) {
-  return {
-    type: 'TOGGLE_POST',
-    id
-  }
+export function togglePost (postId, i) {
+    return {
+        type: 'TOGGLE_POST',
+        postId,
+        i
+    }
 }
 
-export function deletePost (id) {
-  return {
-    type: 'DELETE_POST',
-    id
-  }
+
+export function deletePost (postId, i) {
+    return {
+        type: 'DELETE_POST',
+        postId,
+        i
+    }
 }

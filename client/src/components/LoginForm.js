@@ -26,17 +26,17 @@ class LoginForm extends Component {
       this.setState({redirectToAllUsers: true, createdUser: res.data})
     })
   }
-  singleUserPath = () => {
-    axios.get('/api/users/:id', {user: this.state.user}).then((res) => {
-    this.setState({redirectToSingleUser: true, singleUser: res.data})
-  })
-}
-
-saveEditUser = () => {
-  axios.patch('/api/users/:id', {editUser: this.state.editUser}).then((res) => {
-    this.setState({ editUser: res.data})
-  })
-}
+//   singleUserPath = () => {
+//     axios.get('/api/users/:id', {user: this.state.user}).then((res) => {
+//     this.setState({redirectToSingleUser: true, singleUser: res.data})
+//   })
+// }
+//
+// saveEditUser = () => {
+//   axios.patch('/api/users/:id', {editUser: this.state.editUser}).then((res) => {
+//     this.setState({ editUser: res.data})
+//   })
+// }
 
   handleChange = (e) => {
     const user = {
@@ -44,40 +44,46 @@ saveEditUser = () => {
     }
     user[e.target.name] = e.target.value
     this.setState({user})
+    console.log('handleChange')
   }
 
-  handleSubmit = (e) => {
-    e.preventDefault()
-    this.newUser()
-    console.log('User submitted info')
-  }
+  // handleSubmit = (e) => {
+  //   e.preventDefault()
+  //   this.newUser()
+  //   console.log('User submitted info')
+  // }
   handleSignUp = (e) => {
     e.preventDefault()
     this.saveNewUser()
+    console.log('handleSignUp')
   }
 
-  handleUpdate = (e) => {
-    const editUser = {
-      ...this.props.editUser
-    }
-
-  }
+  // handleUpdate = (e) => {
+  //   const editUser = {
+  //     ...this.props.editUser
+  //
+  //   }
+  // console.log('handleUpdate')
+  // }
 
 
   render() {
     if (this.state.redirectToAllUsers) {
-      console.log("REDIRECTING TO ALL USERS", this.state.createdUser.id)
+      console.log("REDIRECTING TO ALL USERS", this.state.createdUser)
       return <Redirect to='/users' />
     }
     return (<div>
-
       <form onSubmit={this.handleSubmit}>
+        <div>
+          <label htmlFor="name">Name</label>
+          <input onChange={this.handleChange} name="name" type="text" value={this.state.name}/>
+        </div>
         <div>
           <label htmlFor="email">Email</label>
           <input onChange={this.handleChange} name="email" type="text" value={this.state.email}/>
         </div>
         <div>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="name">Password</label>
           <input onChange={this.handleChange} name="password" type="text" value={this.state.password}/>
         </div>
         <div>
@@ -91,7 +97,7 @@ saveEditUser = () => {
   }
 }
 const mapStateToProps = (state) => {
-  return {createdUser: state.createdUser}
+  return {newUser: state.newUser}
 }
 
 export default connect(mapStateToProps, {push, saveNewUser, saveEditUser, singleUserPath})(LoginForm);

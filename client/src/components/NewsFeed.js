@@ -4,23 +4,31 @@ import {push} from 'react-router-redux'
 import styled from 'styled-components'
 import {userPath, saveNewUser, singleUserPath} from '../actions/user.actions.js'
 import axios from 'axios'
+import NavBar from './NavBar'
+import Footer from './Footer'
 
 class NewsFeed extends Component {
-  componentWillMount() {
-    this.props.saveNewUser()
-    console.log(saveNewUser)
-  }
 
-  componentWillReceiveProps(nextProps) {
+  componentDidMount() {
     this.props.userPath()
     console.log(userPath)
   }
-  componentWillUpdate(nextProps, nextState) {
-    this.props.singleUserPath()
-    console.log(singleUserPath)
-  }
+  // componentWillMount() {
+  //   this.props.saveNewUser()
+  //   console.log(saveNewUser)
+  // }
+  //
+  // componentWillReceiveProps(nextProps) {
+  //   this.props.userPath()
+  //   console.log(userPath)
+  // }
+  // componentWillUpdate(nextProps, nextState) {
+  //   this.props.singleUserPath()
+  //   console.log(singleUserPath)
+  // }
  render() {
     return (<div>
+      <NavBar/>
 
       {/* <div onClick={() => this.props.history.push(`/user/${user}`)}>
         Profile
@@ -50,7 +58,7 @@ class NewsFeed extends Component {
         }
 
       </div>
-
+<Footer/>
     </div>)
   }
 }

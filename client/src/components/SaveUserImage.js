@@ -61,7 +61,7 @@ class SaveUserImage extends Component {
 }
 
 function mapStateToProps(state) {
-  return {users: state.users};
+  return {user: state.user};
 }
 
 export default connect(mapStateToProps, {findUserByFace, clearUserData})(SaveUserImage);

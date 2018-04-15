@@ -1,126 +1,108 @@
-import React, { Component } from "react";
-import { Form, Input, Button } from "semantic-ui-react";
-import axios from "axios";
-import styled from "styled-components";
-import {addComment, editComment, toggleComment, deleteComment} from '../actions/comment.actions.js'
-import {addPost, editPost, togglePost, deletePost} from '../actions/post.actions.js'
+import React, {Component} from 'react'
+import {Redirect} from 'react-router-dom'
+import axios from 'axios'
+import styled from 'styled-components'
+import {saveNewUser, saveEditUser, singleUserPath} from '../actions/user.actions.js'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
+import {Form, Input, Button} from "semantic-ui-react";
 
-const FormContainer = styled.div`
+const FormContainer = styled.div `
   width: 60vw;
   margin: 20px auto;
 `;
 
-const ButtonSpacing = styled.div`
+const ButtonSpacing = styled.div `
 margin: 10px;
 `
 
-class Edit extends Component {
-    state = {
-      user: {
-        posts: '',
-        comments:''
-      }
+class EditUser extends Component {
+  state = {
+    user: {
+      email: '',
+      password: '',
+      age: '',
+      photo: '',
+      name: ''
+    },
+    redirectToSingleUser: false
+  }
 
+  // saveEditUser = () => {
+  //   axios.put('/api/users', {user: this.state.user}).then((res) => {
+  //     this.setState({redirectToSingleUser: true, createdUser: res.data})
+  //   })
+  // }
+  editUser = () => {
+    axios.put(`/api/users/:id`, {user: this.state.user}).then((res) => {
+      this.setState({redirectToSingleUser: true, user: res.data})
+    })
+  }
+
+  handleChange = (e) => {
+    const user = {
+      ...this.state.user
+    }
+    user[e.target.name] = e.target.value
+    this.setState({user})
+    console.log(user)
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.setState.saveEditUserInfo
+    console.log('Edit User info')
+  }
+
+  handleUpdate = (e) => {
+    const editUser = {
+      ...this.props.editUser
     }
 
-    // handleChange = (event) => {
-    //   this.setState({ comments: event.target.value })
-    // }
-    //
-    // handleSubmit = (event) => {
-    //   event.preventDefault()
-    //   this.props.editComment(
-    //     this.props.id,
-    //     this.state.comments
-    //   )
-    //   this.setState({ comments: '' })
-    // }
-    handleChange = (event) => {
-      this.setState({ posts: event.target.value })
-    }
-
-    handleSubmit = (event) => {
-      event.preventDefault()
-      this.props.editPost(
-        this.props.id,
-        this.state.posts
-      )
-      this.setState({ posts: '' })
-    }
+  }
 
   render() {
+    if (this.state.redirectToSingleUser) {
+      console.log("UPDATING  USER", this.state.user.id)
+      return <Redirect to='/users'/>
+    }
     return (
       <FormContainer>
-        {console.log(this.props.user)}
-        {console.log(this.props.comment_id)}
-        {console.log(this.props.post_id)}
         <Form onSubmit={this.handleSubmit}>
-          <div>
-            <label>Title</label>
-          </div>
-          <Input
-            placeholder="title"
-            onChange={this.handleChange}
-            type="text"
-            name="title"
-            required
-            value={this.state.posts}
-          />
+        <div>
+          <label>Title</label>
+        </div>
+        <Input placeholder="title" onChange={this.handleChange} type="text" name="title" required="required" value={this.state.saveEditUser}/>
 
-          <div>
-            <label>Comment</label>
-          </div>
-          <textarea
-            placeholder="Comment must contain at least 20 characters."
-            onChange={this.handleChange}
-            type="text"
-            name="comment"
-            required
-            value={this.state.posts}
-          />
-          <ButtonSpacing>
+        <div>
+          <label>Comment</label>
+        </div>
+        <textarea placeholder="Comment must contain at least 20 characters." onChange={this.handleChange} type="text" name="comment" required="required" value={this.state.saveEditUser}/>
+        <ButtonSpacing>
           <Button>Save Changes</Button>
           <Button onClick={this.props.editToggle}>Cancel</Button>
-          </ButtonSpacing>
+        </ButtonSpacing>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input onChange={this.handleChange} name="email" type="text" value={this.state.email}/>
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <input onChange={this.handleChange} name="password" type="text" value={this.state.password}/>
+          </div>
+          <div>
+            <label htmlFor="age">Age</label>
+            <input onChange={this.handleChange} name="age" type="text" value={this.state.age}/>
+          </div>
+          <button onClick={this.handleSignUp}>Log-in</button>
         </Form>
-        {/* <Form onSubmit={this.handleSubmit}>
-          <div>
-            <label>Title</label>
-          </div>
-          <Input
-            placeholder="title"
-            onChange={this.handleChange}
-            type="text"
-            name="title"
-            required
-            value={this.state.comments}
-          />
-
-          <div>
-            <label>Comment</label>
-          </div>
-          <textarea
-            placeholder="Comment must contain at least 20 characters."
-            onChange={this.handleChange}
-            type="text"
-            name="comment"
-            required
-            value={this.state.comments}
-          />
-          <ButtonSpacing>
-          <Button>Save Changes</Button>
-          <Button onClick={this.props.editToggle}>Cancel</Button>
-          </ButtonSpacing>
-        </Form> */}
-      </FormContainer>
-
-    );
+    </FormContainer>
+  )
   }
 }
 
 const mapStateToProps = (state) => {
-  return {post_id: state.update}
+  return {editUser: state.saveEditUser}
 }
-export default connect(mapStateToProps, {push, addComment, toggleComment, editComment, deleteComment, addPost, editPost, togglePost, deletePost})(Edit)
+
+export default connect(mapStateToProps, {push, saveEditUser, singleUserPath})(EditUser);

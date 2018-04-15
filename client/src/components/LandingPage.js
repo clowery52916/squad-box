@@ -1,14 +1,17 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import styled from "styled-components";
-import { Button } from "semantic-ui-react";
+import { Link } from 'react-router-dom'
+import {Button} from "semantic-ui-react";
 import WebCam from './WebCam'
+import LoginForm from './LoginForm'
+import SignUpForm from './SignUpForm'
 import SemanticGrid from "./SemanticGrid";
 import NavBar from './NavBar'
 import Footer from './Footer'
 import RecognizeUserFace from './RecognizeUserFace'
+import RegisterUserFace from './RegisterUserFace'
 
-
-const LandingImage = styled.div`
+const LandingImage = styled.div `
   background-image: url("");
   background-size: cover;
   background-repeat: no-repeat;
@@ -16,7 +19,7 @@ const LandingImage = styled.div`
   width: 100vw;
   display: flex;
 `;
-const HomeContainer = styled.div`
+const HomeContainer = styled.div `
   text-align: center;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -24,7 +27,7 @@ const HomeContainer = styled.div`
   color: rgba(#9a97b8, 0.61);
 `;
 
-const LandingText = styled.div`
+const LandingText = styled.div `
   margin: auto;
   text-align: center;
   background: rgba(0, 0, 0, 0.2);
@@ -35,10 +38,10 @@ const LandingText = styled.div`
     font-size: 40px;
   }
 `;
-const ButtonPadding = styled.div`
+const ButtonPadding = styled.div `
   margin: 5px;
 `;
-const BodyContent = styled.div`
+const BodyContent = styled.div `
   width: 75vw;
   height: 100vh;
   text-align: center;
@@ -49,35 +52,42 @@ const BodyContent = styled.div`
 class Home extends Component {
 
   render() {
-    return (
-<div>
+    return (<div>
+      <h1>
+        <Link to='/'> SquadBox </Link>
+      </h1>
       <HomeContainer>
-          <NavBar />
+        <NavBar/>
         <LandingImage>
 
           <LandingText>
-                <WebCam />
+            <WebCam/>
             <h1>SquadBox</h1>
             <p>
               Real People. Real Life. Real Safe
             </p>
-
+            <LoginForm/>
+            <br/>
+            <SignUpForm />
             <ButtonPadding>
-              <Button type="submit">Sign Up</Button>
+              <Button onClick={this.handleClick}>Sign Up</Button>
             </ButtonPadding>
             <ButtonPadding>
-              <Button type="submit">Log In</Button>
+              <Button onClick={this.handleClick}>Log In</Button>
             </ButtonPadding>
           </LandingText>
         </LandingImage>
         <BodyContent>
-          <SemanticGrid />
+          <SemanticGrid/>
         </BodyContent>
-        <RecognizeUserFace />
+        {/* <RegisterUserFace />
+        <RecognizeUserFace /> */
+        }
+        {/* getting an infinate loop on one of these pages, need to check it out tomorrow */}
+
       </HomeContainer>
-      <Footer />
-      </div>
-    );
+      <Footer/>
+    </div>);
   }
 }
 

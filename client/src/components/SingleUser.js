@@ -3,11 +3,10 @@ import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
 import {singleUserPath, getSingleUser} from '../actions/user.actions.js'
-import Edit from './Edit'
 import axios from 'axios'
 import NavBar from './NavBar'
 import Footer from './Footer'
-import Posts from './Posts'
+import Edit from './Edit'
 
 class SingleUser extends Component {
 
@@ -26,8 +25,9 @@ class SingleUser extends Component {
           <img width={200} src={this.props.user.photo} alt={this.props.user.name} />
           <h6>Your Post History {this.props.user.post}</h6>
           <h6>Comments you've made {this.props.user.comment}</h6>
-        <Edit/>
+        {/* <Comments/> */}
         {/* <Posts /> */}
+        <Edit/>
       </div>
       <Footer/>
     </div>)
@@ -37,11 +37,7 @@ const mapStateToProps = (state, ownProps) => {
   if (state.users.length === 0){
     //Get all the users from API when going directly to this page
   }
-  console.log(state)
-  console.log(ownProps)
   const userId = ownProps.match.params.id
-  console.log(userId)
-  console.log(typeof userId)
   const user = state.users.find(user => {
     return user.id === parseInt(userId)
   })
