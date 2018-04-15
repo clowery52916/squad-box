@@ -1,15 +1,26 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { showAll, showCompleted, showCurrent } from '../actions/visibility.actions'
+import { Button, Icon } from 'semantic-ui-react'
 
-const VisibilityButtons = (props) => {
-  return (
-    <div>
-      <button onClick={props.showAll}>Show All</button>
-      <button onClick={props.showCompleted}>Show Complete</button>
-      <button onClick={props.showCurrent}>Show Current</button>
-    </div>
-  )
-}
+const ButtonExampleAnimated = () => (
+  <div>
+    <Button animated>
+      <Button.Content visible>Next</Button.Content>
+      <Button.Content hidden>
+        <Icon name='right arrow' />
+      </Button.Content>
+    </Button>
+    <Button animated='vertical'>
+      <Button.Content hidden>Users</Button.Content>
+      <Button.Content visible>
+        <Icon name='person' />
+      </Button.Content>
+    </Button>
+    <Button animated='fade'>
+      <Button.Content visible>
+        Sign-up for a Pro account
+      </Button.Content>
+    </Button>
+  </div>
+)
 
-export default connect(null, { showAll, showCompleted, showCurrent })(VisibilityButtons)
+export default ButtonExampleAnimated

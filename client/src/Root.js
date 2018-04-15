@@ -11,6 +11,7 @@ import LandingPage from './components/LandingPage'
 import LoginForm from './components/LoginForm'
 import NewsFeed from './components/NewsFeed'
 import SingleUser from './components/SingleUser'
+import RegisterUserFace from './components/RegisterUserFace'
 
 
 const history = createHistory()

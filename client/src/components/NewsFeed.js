@@ -2,25 +2,24 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
-import {userPath, saveEditUser, singleUserPath} from '../actions/user.actions.js'
+import {userPath, saveNewUser, singleUserPath} from '../actions/user.actions.js'
 import axios from 'axios'
 
 class NewsFeed extends Component {
   componentWillMount() {
-    this.props.userPath()
-console.log(userPath)
+    this.props.saveNewUser()
+    console.log(saveNewUser)
   }
 
   componentWillReceiveProps(nextProps) {
+    this.props.userPath()
+    console.log(userPath)
+  }
+  componentWillUpdate(nextProps, nextState) {
     this.props.singleUserPath()
     console.log(singleUserPath)
   }
-  componentWillUpdate(nextProps, nextState) {
-    this.props.saveEditUser()
-    console.log(saveEditUser)
-  }
-  componentd
-  render() {
+ render() {
     return (<div>
 
       {/* <div onClick={() => this.props.history.push(`/user/${user}`)}>
@@ -30,25 +29,23 @@ console.log(userPath)
         <button onClick={() => this.props.history.push(`/users/${user}`)}>
         fuck off
         </button>
-      </div> */}
-        <h3>Add some friends!</h3>
+      </div> */
+      }
+      <h3>Add some friends!</h3>
       <div>
 
         {
-          this.props.users.map((userId) => {
-            return (
-              <div>
+          this.props.users.map((user) => {
+            return (<div>
 
-              <div onClick={() => this.props.history.push(`/users/${userId.id}`)}>
-                <img width={200} src={userId.photo} alt={userId.name}/>
-                <br/> {userId.name}
-                <br/>
-                {userId.email}
-                <br/>
-                {userId.age}
+              <div onClick={() => this.props.history.push(`/users/${user.id}`)}>
+                <img width={200} src={user.photo} alt={user.name}/>
+                <br/> {user.name}
+                <br/> {user.email}
+                <br/> {user.age}
               </div>
 
-        </div> )
+            </div>)
           })
         }
 
@@ -60,4 +57,4 @@ console.log(userPath)
 const mapStateToProps = (state) => {
   return {users: state.users}
 }
-export default connect(mapStateToProps, {push, userPath, singleUserPath, saveEditUser})(NewsFeed)
+export default connect(mapStateToProps, {push, userPath, singleUserPath, saveNewUser})(NewsFeed)

@@ -66,10 +66,11 @@ saveEditUser = () => {
 
   render() {
     if (this.state.redirectToAllUsers) {
-      console.log("REDIRECTING TO SINGLE USER", this.state.createdUser.id)
+      console.log("REDIRECTING TO ALL USERS", this.state.createdUser.id)
       return <Redirect to='/users' />
     }
     return (<div>
+
       <form onSubmit={this.handleSubmit}>
         <div>
           <label htmlFor="email">Email</label>
@@ -90,7 +91,7 @@ saveEditUser = () => {
   }
 }
 const mapStateToProps = (state) => {
-  return {newUser: state.newUser}
+  return {createdUser: state.createdUser}
 }
 
 export default connect(mapStateToProps, {push, saveNewUser, saveEditUser, singleUserPath})(LoginForm);

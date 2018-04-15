@@ -3,26 +3,33 @@ import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
 import {singleUserPath, getSingleUser} from '../actions/user.actions.js'
-import EditUser from './EditUser'
+import Edit from './Edit'
 import axios from 'axios'
-
+import NavBar from './NavBar'
+import Footer from './Footer'
+import Posts from './Posts'
 
 class SingleUser extends Component {
 
 
   render() {
     return (<div>
+      <NavBar />
       <h1>Profile</h1>
 
         <div>
           <h3>Welcome Back {this.props.user.name}</h3>
-          <h3>Update your information</h3>
-          <h4>age: {this.props.user.age}</h4>
-          <h4>email: {this.props.user.email}</h4>
-          <h4>Update your photo: </h4>
+          <h3>Your Information</h3>
+          <h6>age: {this.props.user.age}</h6>
+          <h6>email: {this.props.user.email}</h6>
+          <h6>Profile Picture: </h6>
           <img width={200} src={this.props.user.photo} alt={this.props.user.name} />
-        <EditUser/>
+          <h6>Your Post History {this.props.user.post}</h6>
+          <h6>Comments you've made {this.props.user.comment}</h6>
+        <Edit/>
+        {/* <Posts /> */}
       </div>
+      <Footer/>
     </div>)
   }
 }
