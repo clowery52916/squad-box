@@ -5,6 +5,7 @@ import WebCam from './WebCam'
 import SemanticGrid from "./SemanticGrid";
 import NavBar from './NavBar'
 import Footer from './Footer'
+import RecognizeUserFace from './RecognizeUserFace'
 
 
 const LandingImage = styled.div`
@@ -72,7 +73,7 @@ class Home extends Component {
         <BodyContent>
           <SemanticGrid />
         </BodyContent>
-
+        <RecognizeUserFace />
       </HomeContainer>
       <Footer />
       </div>
