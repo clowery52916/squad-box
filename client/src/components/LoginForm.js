@@ -2,10 +2,22 @@ import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
-import { Button, Form, Message } from 'semantic-ui-react'
+import {Form, Input, Button} from "semantic-ui-react";
 import {saveNewUser, saveEditUser, singleUserPath} from '../actions/user.actions.js'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
+
+const FormContainer = styled.div `
+  width: 60vw;
+  margin: 20px auto;
+`;
+
+const ButtonSpacing = styled.div `
+margin: 10px;
+`
+
+
+
 
 class LoginForm extends Component {
   state = {
@@ -72,26 +84,37 @@ class LoginForm extends Component {
       console.log("REDIRECTING TO ALL USERS", this.state.createdUser)
       return <Redirect to='/users' />
     }
+
     return (<div>
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input onChange={this.handleChange} name="name" type="text" value={this.state.name}/>
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input onChange={this.handleChange} name="email" type="text" value={this.state.email}/>
-        </div>
-        <div>
-          <label htmlFor="name">Password</label>
-          <input onChange={this.handleChange} name="password" type="text" value={this.state.password}/>
-        </div>
-        <div>
-          <label htmlFor="age">Age</label>
-          <input onChange={this.handleChange} name="age" type="text" value={this.state.age}/>
-        </div>
-        <button onClick={this.handleSignUp}>Log-in</button>
-      </form>
+        <FormContainer>
+          <h3>Create an account, or login into your existing one!</h3>
+          <Form onSubmit={this.handleSubmit}>
+          <div>
+            <label>Full Name: </label>
+          </div>
+          <Input placeholder="name" onChange={this.handleChange} type="text" name="name" required="required" value={this.state.newUser}/>
+          {/* <Input placeholder="Comment must contain at least 20 characters." onChange={this.handleChange} type="text" name="comment" required="required" value={this.state.saveEditUser}/> */}
+
+            <div>
+              <label htmlFor="email">Email</label>
+              <Input onChange={this.handleChange} name="email" type="text" value={this.state.email}/>
+            </div>
+            <div>
+              <label htmlFor="password">Password</label>
+              <Input placeholder='pasword must contain 6 or more characters' onChange={this.handleChange} name="password" type="text" value={this.state.password}/>
+            </div>
+            <div>
+              <label htmlFor="age">Age</label>
+              <Input onChange={this.handleChange} name="age" type="number" value={this.state.age}/>
+            </div>
+            <ButtonSpacing>
+              <Button>Save Changes</Button>
+              <Button onClick={this.handleSignUp}>Log-in</Button>
+            </ButtonSpacing>
+
+          </Form>
+
+      </FormContainer>
 
     </div>)
   }

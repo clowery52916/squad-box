@@ -56,8 +56,8 @@ class Navbar extends Component {
               {/* link to all users*/}
             </LinkMargin>
             <LinkMargin>
-              <Link to="/users/id">Home</Link>
-              {/* link to user Profile */}
+              <Link to="/">Home</Link>
+              {/* link to home page */}
             </LinkMargin>
           </LinkContainer>
         </div>

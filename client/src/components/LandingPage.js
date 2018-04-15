@@ -68,13 +68,8 @@ class Home extends Component {
             </p>
             <LoginForm/>
             <br/>
-            <SignUpForm />
-            <ButtonPadding>
-              <Button onClick={this.handleClick}>Sign Up</Button>
-            </ButtonPadding>
-            <ButtonPadding>
-              <Button onClick={this.handleClick}>Log In</Button>
-            </ButtonPadding>
+
+            
           </LandingText>
         </LandingImage>
         <BodyContent>

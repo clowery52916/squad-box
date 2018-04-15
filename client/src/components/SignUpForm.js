@@ -3,62 +3,58 @@ import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 import { Button, Form, Message } from 'semantic-ui-react'
-import {getSingleUser, saveEditUser, singleUserPath} from '../actions/user.actions.js'
+import {saveNewUser} from '../actions/user.actions.js'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
+import LoginForm from './LoginForm'
 
-class SingUpForm extends Component {
+class SignUpForm extends Component {
   state = {
-   user: {
-     name: '',
-     email: '',
-     password: '',
-     age: '',
-   },
-   createdUser: {},
-   redirectToSingleUser: false,
- }
+    user: {
+      email: '',
+      password: '',
+      age: ''
+    },
+    createdUser: {},
+    redirectToAllUsers: false,
+  }
 
- singleUserPath = (userId) => {
-   axios.post(`/api/users/${userId}`, {user: this.state.user}).then((res) => {
-     this.setState({redirectToSingleUser: true, createdUser: res.data})
-   })
- }
+  saveNewUser = () => {
+    axios.get('/api/users', {user: this.state.user}).then((res) => {
+      this.setState({redirectToAllUsers: true, createdUser: res.data})
+    })
+  }
 
- handleChange = (e) => {
-   const userId = {
-     ...this.state.userId
-   }
-   userId[e.target.name] = e.target.value
-   this.setState({userId})
- }
+  handleChange = (e) => {
+    const user = {
+      ...this.state.user
+    }
+    user[e.target.name] = e.target.value
+    this.setState({user})
+  }
 
- handleSubmit = (e) => {
-   e.preventDefault()
-   console.log('User submitted info')
- }
- handleSignUp = (e) => {
-   e.preventDefault()
-   this.singleUserPath()
- }
+  handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('User submitted info')
+  }
+  handleSignUp = (e) => {
+    e.preventDefault()
+    this.saveNewUser()
+  }
 
   render() {
-    if (this.state.redirectToSingleUser) {
-      console.log("REDIRECTING TO SINGLE USERS", this.state.createdUser.id)
-      return <Redirect to='/users' />
+    if (this.state.redirectToAllUsers) {
+      console.log("REDIRECTING TO SINGLE USER", this.state.createdUser.id)
+      return <Redirect push="push" to={`/users/${this.state.createdUser.id}`}/>
     }
     return (<div>
       <form onSubmit={this.handleSubmit}>
         <div>
-          <label htmlFor="name">Name</label>
-          <input onChange={this.handleChange} name="name" type="text" value={this.state.name}/>
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email" htmlFor="userName">Email</label>
           <input onChange={this.handleChange} name="email" type="text" value={this.state.email}/>
         </div>
         <div>
-          <label htmlFor="name">Password</label>
+          <label htmlFor="password">Password</label>
           <input onChange={this.handleChange} name="password" type="text" value={this.state.password}/>
         </div>
         <div>
@@ -67,6 +63,7 @@ class SingUpForm extends Component {
         </div>
         <button onClick={this.handleSignUp}>Sign Up</button>
       </form>
+<br/>
 
     </div>)
   }
@@ -75,4 +72,4 @@ const mapStateToProps = (state) => {
   return {newUser: state.newUser}
 }
 
-export default connect(mapStateToProps, {push, getSingleUser, saveEditUser, singleUserPath})(SingUpForm);
+export default connect(mapStateToProps, {push, saveNewUser})(SignUpForm);

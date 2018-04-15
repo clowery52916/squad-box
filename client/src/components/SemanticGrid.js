@@ -14,7 +14,7 @@ const SemanticGrid = () => (
       <Grid.Column computer={13}>
         <h1>Squad Goals</h1>
         <Image src='https://images.unsplash.com/photo-1501238295340-c810d3c156d2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6aa5a477df99c1cf12588ca8a0b03162&auto=format&fit=crop&w=1200&q=200' />
-        <Link to={`/users/1`}><h3>Love the lif you live</h3></Link>
+        <Link to={`/users/1`}><h3>Love the life you live</h3></Link>
         <p>Lorem Ispum is a choke artist. It chokes! I write the best placeholder text, and
 I'm the biggest developer on the web by far... While that's mock-ups and this is
 politics, are they really so different? I'm speaking with myself, number one,
