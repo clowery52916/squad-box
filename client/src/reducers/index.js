@@ -1,13 +1,13 @@
-import {combineReducers} from 'redux'
-import {routerReducer as router} from 'react-router-redux' // we need this for react-router
-import users from './userReducer'
-import { locationReducer } from 'redux-history';
+import { combineReducers } from 'redux';
 
+// calling the default reducer to create a link
+import registerReducer from './register-reducer';
+import recognizeReducer from './recognize-reducer';
 
+const rootReducers = combineReducers({
+    // add reducer files references here
+    regData: registerReducer,
+    detData: recognizeReducer
+});
 
-
-
-// Combine all reducers
-const rootReducer = combineReducers({ users, router })
-  location: locationReducer
-export default rootReducer
+export default rootReducers;
