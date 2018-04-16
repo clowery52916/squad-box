@@ -1,4 +1,6 @@
-function userReducer(state = [], action) {
+const getAllIds = gState => Object.keys(gState);
+
+function userReducer(state = [], action, globalState) {
 
   switch (action.type) {
 
@@ -15,24 +17,29 @@ function userReducer(state = [], action) {
       ]
 
     case 'EDIT_USER_INFO':
-      return updateUserInfo(state, action.editUserInfo)
+      return updateUserPost(state, action.payload.editPost)
 
     case 'DELETE_USER':
-      return state.filter(user => user.id !== action.deleteUserById)
+      return state.filter(user => user.id !== action.payload.deleteUserById)
 
-    default:
-      return state
+      case 'ADD_ALL_ITEMS':
+          return getAllIds(globalState);
+        //  remove all displayed items
+        case 'REMOVE_ALL_ITEMS':
+          return [];
+        default:
+          return state;
   }
 }
 
-function updateUserInfo(state: action, saveEditUserInfo) {
+function updateUserPost(state: action, saveEditedPost) {
   return state.map((user) => {
-    if (user.id !== action.saveEditUserInfo.id) {
+    if (user.id !== action.saveEditedPost.id) {
       return user
     }
     return {
       ...user,
-      ...action.editUser
+      ...action.editPost
     }
   })
 }

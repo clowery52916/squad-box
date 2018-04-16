@@ -1,4 +1,6 @@
-function posts(state = [], action) {
+const getAllIds = gState => Object.keys(gState);
+
+function posts(state = [], action, globalState) {
   switch (action.type) {
     case 'INCREMENT_LIKES':
       console.log("Incrementing Likes!!");
@@ -49,9 +51,13 @@ function posts(state = [], action) {
 
         case 'DELETE_TOGGLE':
           return state.filter(post => post.id !== action.deletePost)
-
-        default:
-          return state
+          case 'ADD_ALL_ITEMS':
+              return getAllIds(globalState);
+            //  remove all displayed items
+            case 'REMOVE_ALL_ITEMS':
+              return [];
+            default:
+              return state
       }
   }
 

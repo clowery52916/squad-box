@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Form, Input, Button} from 'semantic-ui-react'
 import axios from 'axios'
 import styled from 'styled-components'
+import {toggleComment, addComment } from '../actions/comment.actions.js'
+import {connect} from 'react-redux'
+import {push} from 'react-router-redux'
 
 const FormStyle = styled.div `
 width: 60vw;
@@ -68,4 +71,8 @@ class CommentForm extends Component {
   }
 }
 
-export default CommentForm;
+const mapStateToProps = (state) => {
+  return {update: state.update}
+}
+
+export default connect(mapStateToProps, {push, toggleComment, addComment})(CommentForm);

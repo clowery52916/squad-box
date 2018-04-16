@@ -15,6 +15,11 @@ class NewsFeed extends Component {
     console.log(userPath)
   }
 
+  componentWillUpdate() {
+    this.props.addPost()
+    console.log(addPost)
+  }
+
   render() {
     return (<div>
       <NavBar/>
@@ -31,7 +36,9 @@ class NewsFeed extends Component {
                 <br/> {user.name}
                 <br/> {user.email}
                 <br/> {user.age}
+                <br/>{user.post}
               </div>
+
 
             </div>)
           })
@@ -39,7 +46,7 @@ class NewsFeed extends Component {
 
       </div>
       <Footer/>
-    </div>) } } const mapStateToProps = (state) => {return {users: state.users}}
+    </div>) } } const mapStateToProps = (state) => {return {users: state.users};{posts: state.posts}}
     export default connect(mapStateToProps, {
       push,
       userPath,

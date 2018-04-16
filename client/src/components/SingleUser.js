@@ -35,7 +35,7 @@ const ImageContainer = styled.img `
 `;
 const InfoContainer = styled.div `
   display: flex;
-  background-color: red;
+  border-style: ridge;
   flex-direction: column;
   text-align: center;
   overflow-y: scroll;
@@ -49,7 +49,7 @@ class SingleUser extends Component {
 
   render() {
     return (<div>
-
+      <NavBar/>
       <ImageContainer className='pic' src={this.props.user.photo} alt={this.props.user.name}/>
 
       <SingleUserPage>
@@ -59,17 +59,15 @@ class SingleUser extends Component {
           </h4>
           <h4>Age: {this.props.user.age}</h4>
           <h4>Email: {this.props.user.email}</h4>
-          <h4>Your Post History:
-            <br/> {this.props.user.post}</h4>
-          <h4>Comments you've made:
-            <br/> {this.props.user.comment}</h4>
+
         </InfoContainer>
       </SingleUserPage>
       <EditPost/>
       <Posts/>
-      <CommentForm/>
-      <PostsForm/>
-      {/* <Footer/> */}
+      {/* <PostsForm/> */}
+      {/* <CommentForm/>
+      <PostsForm/> */}
+      <Footer/>
     </div>)
   }
 }

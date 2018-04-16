@@ -1,118 +1,124 @@
-import React, {Component} from 'react';
-import axios from 'axios'
-import {Button} from 'semantic-ui-react'
-import EditPost from './EditPost'
-import styled from 'styled-components'
+import React, { Component } from "react";
+import { Form, Input, Button } from "semantic-ui-react";
+import axios from "axios";
+import styled from "styled-components";
+import {connect} from 'react-redux'
+import {push} from 'react-router-redux'
+import { Redirect } from 'react-router-dom'
+import {editToggle, editPost, saveNewPost, addPost, saveEditPost, deletePost } from '../actions/post.actions.js'
 
-const PostContainer = styled.div `
-    text-align: center;
-`
 
-const DeleteWarning = styled.div `
- border: 1px solid red;
- color: red;
- font-size: 40px;
-`
+const FormContainer = styled.div`
+  width: 60vw;
+  margin: 20px auto;
+`;
 
-const PostStyle = styled.div `
-margin: 20px auto;
-background: white;
-color: #151515;
-width: 50%;
-border-radius: 6px;
-`
-
-const ButtonSpacing = styled.div `
-margin: 20px;
+const ButtonSpacing = styled.div`
+margin: 10px;
 `
 
 class Posts extends Component {
   state = {
-    user: {},
-    post: {},
-    deleteToggle: false,
-    editToggle: false,
-    button: true
-  }
-
-  componentWillMount() {
-    this.getPost()
-  }
-
-  getPost = async () => {
-    const postId = this.state.post.id
-    const res = await axios.get(`/api/users/:user_id/posts/${postId}`)
-    this.setState({post: res.data})
-  }
-
-  deleteToggle = () => {
-    this.setState({
-      deleteToggle: !this.state.deleteToggle
-    })
-    this.setState({
-      button: !this.state.button
+    user:{
+      posts:{
+        body:''
+      },
+    },
+    createdPost:{},
+    editedPost:{},
+    redirectToAllUsers: false
+  };
+  saveNewPost = () => {
+    axios.get(`/api/users/user_id/posts `, {post: this.state.createdPost}).then((res) => {
+      this.setState({redirectToAllUsers: true, createdPost: res.data})
     })
   }
-
-  editToggle = () => {
-    this.setState({
-      editToggle: !this.state.editToggle
-    })
-    this.setState({
-      button: !this.state.button
+  saveNewPost = () => {
+    axios.post(`/api/users/user_id/posts `, {post: this.state.createdPost}).then((res) => {
+      this.setState({redirectToAllUsers: true, createdPost: res.data})
     })
   }
-
-  deletePost = async () => {
-    const postId = this.state.post.id
-    const userId = this.state.post.user.id
-    console.log(userId)
-    await axios.delete(`/api/users/${userId}/posts/${postId}`)
-    this.props.history.push(`/users/${userId}`)
+  editPost = () => {
+    axios.patch(`/api/users/user_id/posts `, {post: this.state.editPost}).then((res) => {
+      this.setState({redirectToAllUsers: true, editedPost: res.data})
+    })
+  }
+  saveEditPost = () => {
+    axios.delete(`/api/users/user_id/posts `, {post: this.state.editPost}).then((res) => {
+      this.setState({redirectToAllUsers: true, editedPost: res.data})
+    })
+  }
+  handleChange = (e) => {
+    const post = {
+      ...this.state.post
+    }
+    post[e.target.name] = e.target.value
+    this.setState({post})
+    console.log('addPost')
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.newUser()
+    console.log('User submitted info')
+  }
+  addPost = (e) => {
+    e.preventDefault()
+    this.addPostToUser()
+    console.log('handleChange')
+  }
+
+  handleUpdate = (e) => {
+    const editUser = {
+      ...this.props.editUser
+
+    }
+  console.log('handleUpdate')
+  }
+
+
+  editToggle = (e) => {
+    const addPost = {
+      ...this.props.addPost
+
+    }
+  console.log('editToggle')
+  }
   render() {
-    return (<PostContainer>
-      <PostStyle>
-        <div>
-          <h1>{this.state.post.title}</h1>
-        </div>
-        <div>
-          <p>{this.state.post.post}</p>
-        </div>
-      </PostStyle>
-      {
-        this.state.button
-          ? (<div>
-            <Button onClick={this.editToggle}>Edit</Button>
-          </div>)
-          : null
-      }
-      <ButtonSpacing>
-        {
-          this.state.editToggle
-            ? (<EditPost userId={this.state.user_id} postId={this.state.id} getPost={this.getPost} editToggle={this.editToggle}/>)
-            : null
-        }
-      </ButtonSpacing>
-      {
-        this.state.button
-          ? (<Button onClick={this.deleteToggle}>Delete</Button>)
-          : null
-      }
-      {
-        this.state.deleteToggle
-          ? (<DeleteWarning>
-            <p>Are you sure you want to delete?</p>
-            <Button onClick={this.deletePost}>Yes</Button>
-            <div>
-              <Button onClick={this.deleteToggle}>No</Button>
-            </div>
-          </DeleteWarning>)
-          : null
-      }
-    </PostContainer>);
+      if (this.state.redirectToAllUsers) {
+        console.log("REDIRECTING TO SINGLE USER", this.state.createdPost.id)
+        return <Redirect push="push" to={`/users/${this.state.createdPost.id}`}/>
+    }
+    return (
+      <FormContainer>
+        {console.log(this.state.post)}
+        <Form onSubmit={this.handleChange}>
+            <div key='user_id'>
+            <label>Post</label>
+          </div>
+          <textarea
+            placeholder="Comment must contain at least 20 characters."
+            onChange={this.handleChange}
+            type="text"
+            name="posts"
+            required
+            value={this.state.user.posts}
+          />
+          <ButtonSpacing>
+          <Button onClick={this.props.addPost}>Save?</Button>
+          <Button onClick={this.props.editPost}>Edit?</Button>
+          <Button onClick={this.props.delete}>Delete?</Button>
+          </ButtonSpacing>
+        </Form>
+      </FormContainer>
+    );
   }
 }
 
-export default Posts;
+const mapStateToProps = (state, ownProps) => {
+  const post = ownProps.id
+  console.log(ownProps)
+  return {user: state.user}
+}
+
+export default connect(mapStateToProps, {push, editToggle, editPost, addPost, saveNewPost, saveEditPost, deletePost})(Posts);

@@ -30,7 +30,7 @@ class PostForm extends Component {
       this.setState({redirectToAllUsers: true, createdPost: res.data})
     })
   }
-
+editPost
   handleChange = (e) => {
     const post = {
       ...this.state.post
@@ -70,7 +70,7 @@ class PostForm extends Component {
           </div>
           <textarea placeholder="Comment must contain at least 20 characters." onChange={this.handleChange} type="text" name="post" require={this.state.post}/>
           <ButtonStyle>
-            <Button>Submit</Button>
+            <Button onClick={this.props.addPost}>Submit</Button>
             <Button onClick={this.props.addPost}>Cancel</Button>
           </ButtonStyle>
         </div>
