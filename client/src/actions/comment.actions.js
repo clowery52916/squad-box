@@ -1,13 +1,18 @@
 import uuid from 'uuid'
 
-
+export function  incrementComment (index) {
+    return {
+        type: 'INCREMENT_LIKES',
+        index
+    }
+}
 export function addComment (user) {
   return {
     type: 'ADD_COMMENT',
-    todo: {
+    comment: {
       id: uuid(),
       user: user,
-      completed: false
+      likes: false
     }
   }
 }

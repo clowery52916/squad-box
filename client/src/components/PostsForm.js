@@ -1,128 +1,88 @@
-import React, {Component} from 'react'
-import {Redirect} from 'react-router-dom'
+import React, {Component} from 'react';
+import {Form, Input, Button} from 'semantic-ui-react'
 import axios from 'axios'
 import styled from 'styled-components'
-import {Form, Input, Button} from "semantic-ui-react";
-import {saveNewUser, saveEditUser, singleUserPath} from '../actions/user.actions.js'
+import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
+import {editToggle, getPost } from '../actions/post.actions.js'
 
-const FormContainer = styled.div `
-  width: 60vw;
-  margin: 20px auto;
-`;
 
-const ButtonSpacing = styled.div `
-margin: 10px;
+const FormStyle = styled.div `
+width: 60vw;
+margin: 20px auto;
+`
+
+const ButtonStyle = styled.div `
+margin: 10px auto;
 `
 
 class PostForm extends Component {
   state = {
-    user: {
-      email: '',
-      password: '',
-      age: ''
+    post: {
+      title: '',
+      body: ''
     },
-    createdUser: {},
-    singleUser: {},
-    editUser: {},
-    redirectToAllUsers: false,
-    redirectToSingleUser: false
+    createdPost: {}
   }
 
-  addPost = () => {
-    axios.post('/api/users', {user: this.state.user}).then((res) => {
-      this.setState({redirectToAllUsers: true, createdUser: res.data})
+  getPost = () => {
+    axios.get(`/api/users/`, {post: this.state.post}).then((res) => {
+      this.setState({redirectToAllUsers: true, createdPost: res.data})
     })
   }
-    editPost = () => {
-      axios.get('/api/users/:id', {user: this.state.user}).then((res) => {
-      this.setState({redirectToSingleUser: true, singleUser: res.data})
-    })
-  }
-
-  togglePost = () => {
-    axios.patch('/api/users/:id', {editUser: this.state.editUser}).then((res) => {
-      this.setState({ editUser: res.data})
-    })
-  }
-  deletePost = () => {
-    axios.patch('/api/users/:id', {editUser: this.state.editUser}).then((res) => {
-      this.setState({ editUser: res.data})
-    })
-  }
-
 
   handleChange = (e) => {
-    const user = {
-      ...this.state.user
+    const post = {
+      ...this.state.post
     }
-    user[e.target.name] = e.target.value
-    this.setState({user})
-    console.log('handleChange')
+    post[e.target.title] = e.target.value
+    this.setState({post})
   }
 
   // handleSubmit = (e) => {
   //   e.preventDefault()
-  //   this.newUser()
-  //   console.log('User submitted info')
+  //   console.log('New Post Submitted')
   // }
   handleSignUp = (e) => {
     e.preventDefault()
+    console.log(e)
     this.saveNewUser()
-    console.log('handleSignUp')
   }
-
-  // handleUpdate = (e) => {
-  //   const editUser = {
-  //     ...this.props.editUser
-  //
-  //   }
-  // console.log('handleUpdate')
-  // }
 
   render() {
     if (this.state.redirectToAllUsers) {
-      console.log("REDIRECTING TO ALL USERS", this.state.createdUser)
-      return <Redirect to='/users'/>
+      console.log("REDIRECTING TO SINGLE USER", this.state.createdPost.id)
+      return <Redirect push="push" to={`/users/${this.state.createdPost.id}`}/>
     }
+    return (<FormStyle>
+      <Form onSubmit={this.handleSubmit}>
+        <div>
+          <label>title</label>
+        </div>
+        <Input placeholder="title" onChange={this.handleChange} type="text" name="title"
+          // required
 
-    return (<div>
-      <FormContainer>
-        <h3>Create an account, or login into your existing one!</h3>
-        <Form onSubmit={this.handleSubmit}>
+          // value={this.props.post.title}
+        />
+        <div>
           <div>
-            <label>Full Name:
-            </label>
+            <label>post</label>
           </div>
-          <Input placeholder="name" onChange={this.handleChange} type="text" name="name" required="required" value={this.state.newUser}/> {/* <Input placeholder="Comment must contain at least 20 characters." onChange={this.handleChange} type="text" name="comment" required="required" value={this.state.saveEditUser}/> */}
+          <textarea placeholder="Comment must contain at least 20 characters." onChange={this.handleChange} type="text" name="post" require={this.state.post}/>
+          <ButtonStyle>
+            <Button>Submit</Button>
+            <Button onClick={this.props.getPost}>Cancel</Button>
+          </ButtonStyle>
+        </div>
 
-          <div>
-            <label htmlFor="email">Email</label>
-            <Input onChange={this.handleChange} name="email" type="text" value={this.state.email}/>
-          </div>
-          <div>
-            <label htmlFor="password">Password</label>
-            <Input placeholder='pasword must contain 6 or more characters' onChange={this.handleChange} name="password" type="text" value={this.state.password}/>
-          </div>
-          <div>
-            <label htmlFor="age">Age</label>
-            <Input onChange={this.handleChange} name="age" type="number" value={this.state.age}/>
-          </div>
-          <ButtonSpacing>
-            <Button>Save Changes</Button>
-            <Button onClick={this.handleSignUp}>Log-in</Button>
-          </ButtonSpacing>
-
-        </Form>
-
-      </FormContainer>
-
-    </div>)
+      </Form>
+    </FormStyle>);
   }
 }
+
 const mapStateToProps = (state) => {
-  return {newUser: state.newUser}
+  return {update: state.update}
 }
 
-export default connect(mapStateToProps, {push, saveNewUser, saveEditUser, singleUserPath})(PostForm);
+export default connect(mapStateToProps, {push, editToggle, getPost})(PostForm);

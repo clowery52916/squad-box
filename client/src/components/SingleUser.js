@@ -5,9 +5,12 @@ import styled from 'styled-components'
 import {singleUserPath, getSingleUser} from '../actions/user.actions.js'
 import axios from 'axios'
 import NavBar from './NavBar'
+import CommentForm from './CommentForm'
+import EditPost from './EditPost'
 import Footer from './Footer'
-import Edit from './Edit'
+import PostsForm from './PostsForm'
 import {Image} from 'semantic-ui-react'
+import Posts from './Posts'
 
 const SingleUserPage = styled.div `
   padding: 10px;
@@ -60,17 +63,23 @@ class SingleUser extends Component {
       <SingleUserPage>
         <h2>Hello, {this.props.user.name}!</h2>
         <InfoContainer>
-          <h4>About Me</h4>
+          <h4>Account Info </h4>
           <h4>Age: {this.props.user.age}</h4>
-          <h4>Emal: {this.props.user.email}</h4>
-          <h4>Your Post History {this.props.user.postId}</h4>
-          <h4>Comments you've made {this.props.user.commentId}</h4>
+          <h4>Email: {this.props.user.email}</h4>
+          <h4>Your Post History:
+            <br/>
+             {this.props.user.post}</h4>
+          <h4>Comments you've made:
+            <br/>
+            {this.props.user.comment}</h4>
           {/* <Comments/> */}
           {/* <Posts /> */}
         </InfoContainer>
       </SingleUserPage>
-
-      <Edit/>
+      <EditPost/>
+      <Posts/>
+      {/* <CommentForm/> */}
+      <PostsForm/>
       <Footer/>
     </div>)
   }

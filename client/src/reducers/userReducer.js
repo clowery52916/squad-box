@@ -15,7 +15,7 @@ function userReducer(state = [], action) {
       ]
 
     case 'EDIT_USER_INFO':
-      return updateUserInfo(...state, action.editUserInfo)
+      return updateUserInfo(state, action.editUserInfo)
 
     case 'DELETE_USER':
       return state.filter(user => user.id !== action.deleteUserById)

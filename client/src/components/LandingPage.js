@@ -68,8 +68,6 @@ class Home extends Component {
             </p>
             <LoginForm/>
             <br/>
-
-            
           </LandingText>
         </LandingImage>
         <BodyContent>

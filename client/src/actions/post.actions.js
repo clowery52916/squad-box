@@ -1,39 +1,45 @@
-export function  increment (index) {
+import uuid from 'uuid'
+
+export function incrementPost (index) {
     return {
         type: 'INCREMENT_LIKES',
         index
     }
 }
-export function  addPost (postId, author, comment) {
-    return {
-        type: 'ADD_POST',
-        postId,
-        author,
-        comment
+export function getPost (user) {
+  return {
+    type: 'GET_POST',
+    post: {
+      id: uuid(),
+      user: user,
+      likes: false
     }
+  }
 }
 
-export function editPost (postId, i) {
-    return {
-        type: 'EDIT_POST',
-        postId,
-        i
-    }
+export function editPost (id, user) {
+  return {
+    type: 'EDIT_POST',
+    id,
+    user
+  }
 }
 
-export function togglePost (postId, i) {
-    return {
-        type: 'TOGGLE_POST',
-        postId,
-        i
-    }
+export function editToggle (id) {
+  return {
+    type: 'EDIT_TOGGLE',
+    id
+  }
 }
-
-
-export function deletePost (postId, i) {
-    return {
-        type: 'DELETE_POST',
-        postId,
-        i
-    }
+export function deleteToggle (id) {
+  return {
+    type: 'DELETE_TOGGLE',
+    id
+  }
+}
+export function deletePost (id) {
+  return {
+    type: 'DELETE_POST',
+    id
+  }
 }

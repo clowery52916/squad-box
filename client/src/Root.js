@@ -13,6 +13,7 @@ import NewsFeed from './components/NewsFeed'
 import SingleUser from './components/SingleUser'
 import RegisterUserFace from './components/RegisterUserFace'
 import Posts from './components/Posts'
+import PostsForm from './components/PostsForm'
 
 
 const history = createHistory()
@@ -27,7 +28,6 @@ const Root = () => (
         <Route exact path='/users' component={NewsFeed}/>
         <Route exact path='/users/:id' component={SingleUser}/>
         <Route exact path='/users/user_id/posts/:id' component={Posts} />
-
       </div>
       </ConnectedRouter>
     </Provider>

@@ -1,23 +1,25 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import axios from 'axios'
-import { Button } from 'semantic-ui-react'
-import Edit from './Edit'
+import {Button} from 'semantic-ui-react'
+import EditPost from './EditPost'
 import styled from 'styled-components'
-import NavBar from './NavBar'
-import Footer from './Footer'
+import {connect} from 'react-redux'
+import {push} from 'react-router-redux'
+import {editToggle, getPost, deleteToggle, deletePost } from '../actions/post.actions.js'
 
-const PostContainer = styled.div`
+
+const PostContainer = styled.div `
     text-align: center;
 `
 
-const DeleteWarning = styled.div`
+const DeleteWarning = styled.div `
  border: 1px solid red;
  color: red;
  font-size: 40px;
  }
 `
 
-const PostStyle = styled.div`
+const PostStyle = styled.div `
 margin: 20px auto;
 background: white;
 color: #151515;
@@ -25,19 +27,64 @@ width: 50%;
 border-radius: 6px;
 `
 
-const ButtonSpacing = styled.div`
+const ButtonSpacing = styled.div `
 margin: 20px;
 `
 
 class Posts extends Component {
+  state = {
+    user: {},
+    post: {},
+    deleteToggle: false,
+    editToggle: false,
+    button: true
+  }
+
+  componentWillMount() {
+    this.getPost()
+  }
+
+  getPost = async () => {
+    const postId = this.state.postId
+    const res = await axios.get(`/api/users/:user_id/posts/:id`)
+    // console.log(res.data)
+    this.setState({post: res.data})
+  }
+
+  deleteToggle = () => {
+    this.setState({
+      deleteToggle: !this.state.deleteToggle
+    })
+    this.setState({
+      button: !this.state.button
+    })
+  }
+
+  editToggle = () => {
+    this.setState({
+      editToggle: !this.state.editToggle
+    })
+    this.setState({
+      button: !this.state.button
+    })
+  }
+
+  deletePost = async () => {
+    const postId = this.props.match.params.id
+    const userId = this.state.post.user_id
+    console.log(userId)
+    await axios.delete(`/api/users/${userId}/posts/${postId}`)
+    this.props.history.push(`/users/${userId}`)
+  }
+
   render() {
     return (<PostContainer>
       <PostStyle>
         <div>
-          <h1>{this.props.user}</h1>
+          <h1>{this.state.post.title}</h1>
         </div>
         <div>
-          <p>{this.props.user}</p>
+          <p>{this.state.post.post}</p>
         </div>
       </PostStyle>
       {
@@ -50,7 +97,7 @@ class Posts extends Component {
       <ButtonSpacing>
         {
           this.state.editToggle
-            ? (<Edit userId={this.props.user.user_id} userId={this.props.match.params.id} getPost={this.getPost} editToggle={this.editToggle}/>)
+            ? (<EditPost userId={this.state.post.user_id} postId={this.props.match.params.id} getPost={this.getPost} editToggle={this.editToggle}/>)
             : null
         }
       </ButtonSpacing>
@@ -73,29 +120,9 @@ class Posts extends Component {
     </PostContainer>);
   }
 }
-export default Posts
 
+const mapStateToProps = (state) => {
+  return {update: state.update}
+}
 
-// import React, { Component } from 'react';
-// import Photo from './Photos';
-// import Comments from './Comments';
-//
-// class Posts extends Component {
-//   render() {
-//     const { postId } = this.props.params;
-//
-//     const i = this.props.posts.findIndex((post) => post.code === postId);
-//     const post = this.props.posts[i];
-//
-//     const postComments = this.props.comments[postId] || [];
-//
-//     return (
-//       <div className="single-photo">
-//         <Photo i={i} post={post} {...this.props} />
-//         <Comments postComments={postComments} {...this.props} />
-//       </div>
-//     )
-//   }
-// }
-//
-// export default Posts;
+export default connect(mapStateToProps, {push, editToggle, getPost})(Posts);

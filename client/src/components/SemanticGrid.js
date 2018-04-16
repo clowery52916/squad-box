@@ -9,7 +9,7 @@ const SemanticGrid = () => (
   <Grid celled stackable>
     <Grid.Row>
       <Grid.Column computer={3}>
-        <Image src='https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=891fe858de061305b9d58986c3970d60&auto=format&fit=crop&w=1200&q=200'/>
+        {/* <Image src='https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=891fe858de061305b9d58986c3970d60&auto=format&fit=crop&w=1200&q=200'/> */}
       </Grid.Column>
       <Grid.Column computer={13}>
         <h1>Squad Goals</h1>

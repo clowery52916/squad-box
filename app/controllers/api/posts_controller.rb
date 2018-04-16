@@ -7,6 +7,7 @@ class Api::PostsController < ApplicationController
 
   def create
     @post = Post.create!(post_params)
+    puts @post
 
     render json: @post
   end
