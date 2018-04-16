@@ -46,27 +46,31 @@ const BodyContent = styled.div `
   height: 100vh;
   text-align: center;
   margin: 20px auto;
-
 `;
 
 class Home extends Component {
 
   render() {
     return (<div>
-      <h1>
-      </h1>
       <HomeContainer>
         <NavBar/>
         <LandingImage>
 
           <LandingText>
             <WebCam/>
+            <h1>SquadBox</h1>
             <p>
               Real People. Real Life. Real Safe
             </p>
-
             <LoginForm/>
             <br/>
+            <SignUpForm />
+            <ButtonPadding>
+              <Button onClick={this.handleClick}>Sign Up</Button>
+            </ButtonPadding>
+            <ButtonPadding>
+              <Button onClick={this.handleClick}>Log In</Button>
+            </ButtonPadding>
           </LandingText>
         </LandingImage>
         <BodyContent>

@@ -64,8 +64,8 @@ class Posts extends Component {
   }
 
   deletePost = async () => {
-    const postId = this.state.id
-    const userId = this.state.post.userId
+    const postId = this.state.post.id
+    const userId = this.state.post.user.id
     console.log(userId)
     await axios.delete(`/api/users/${userId}/posts/${postId}`)
     this.props.history.push(`/users/${userId}`)
