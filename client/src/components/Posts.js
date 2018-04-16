@@ -28,7 +28,7 @@ class Posts extends Component {
     editedPost:{},
     redirectToAllUsers: false
   };
-  saveNewPost = () => {
+  addPost = () => {
     axios.get(`/api/users/user_id/posts `, {post: this.state.createdPost}).then((res) => {
       this.setState({redirectToAllUsers: true, createdPost: res.data})
     })

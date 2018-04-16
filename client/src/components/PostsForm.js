@@ -26,7 +26,7 @@ class PostForm extends Component {
   }
 
   addPost = () => {
-    axios.get(`/api/users/`, {post: this.state.post}).then((res) => {
+    axios.get(`/api/users/id`, {post: this.state.createdPost}).then((res) => {
       this.setState({redirectToAllUsers: true, createdPost: res.data})
     })
   }

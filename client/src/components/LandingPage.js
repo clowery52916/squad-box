@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import styled from "styled-components";
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {Button} from "semantic-ui-react";
 import WebCam from './WebCam'
 import LoginForm from './LoginForm'
@@ -64,10 +64,6 @@ class Home extends Component {
             </p>
             <LoginForm/>
             <br/>
-            <SignUpForm />
-            <ButtonPadding>
-              <Button onClick={this.handleClick}>Sign Up</Button>
-            </ButtonPadding>
             <ButtonPadding>
               <Button onClick={this.handleClick}>Log In</Button>
             </ButtonPadding>

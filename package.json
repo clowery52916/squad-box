@@ -38,6 +38,7 @@
     "redux-middleware": "^0.1.21",
     "redux-push": "^1.0.4",
     "redux-thunk": "^2.2.0",
+    "remove-node-modules": "^1.7.2",
     "semantic-ui-react": "^0.79.1",
     "semantic-ui-redux-form-fields": "^1.0.1",
     "superagent": "^3.8.2",
