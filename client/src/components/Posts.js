@@ -40,7 +40,7 @@ class Posts extends Component {
   }
 
   getPost = async () => {
-    const postId = this.state.id
+    const postId = this.state.post.id
     const res = await axios.get(`/api/users/:user_id/posts/${postId}`)
     this.setState({post: res.data})
   }

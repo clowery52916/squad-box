@@ -31,8 +31,8 @@ class Recognize extends Component {
       }, {
         // enter your secret credentials
         headers: {
-          app_id: <enter app="app" id="e70fee1f"/>,
-          app_key: <enter app="app" key="98112e824f82622206d370dae6ed74b9"/>
+          app_id: <enter app="squadbox" id="e70fee1f"/>,
+          app_key: <enter app="squadbox" key="98112e824f82622206d370dae6ed74b9"/>
         }
       }).then((response) => {
         console.log('response', response);

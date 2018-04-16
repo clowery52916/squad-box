@@ -56,24 +56,24 @@ class LoginForm extends Component {
     console.log('handleChange')
   }
 
-  // handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   this.newUser()
-  //   console.log('User submitted info')
-  // }
+  handleSubmit = (e) => {
+    e.preventDefault()
+    this.userPath()
+    console.log('User submitted info')
+  }
   handleSignUp = (e) => {
     e.preventDefault()
     this.saveNewUser()
     console.log('handleSignUp')
   }
 
-  handleUpdate = (e) => {
-    const editUser = {
-      ...this.props.editUser
-
-    }
-  console.log('handleUpdate')
-  }
+  // handleUpdate = (e) => {
+  //   const editUser = {
+  //     ...this.props.editUser
+  //
+  //   }
+  // console.log('handleUpdate')
+  // }
 
   render() {
     if (this.state.redirectToAllUsers) {
@@ -83,11 +83,10 @@ class LoginForm extends Component {
 
     return (<div>
       <FormContainer>
-        <h3>Create an account, or login into your existing one!</h3>
+        <h3>Find your </h3>
         <Form onSubmit={this.handleSubmit}>
           <div>
-            <label>Full Name:
-            </label>
+            <label htmlFor='name'>Full Name: </label>
           </div>
           <Input placeholder="name" onChange={this.handleChange} type="text" key="name" required="required" value={this.state.newUser}/> {/* <Input placeholder="Comment must contain at least 20 characters." onChange={this.handleChange} type="text" name="comment" required="required" value={this.state.saveEditUser}/> */}
 
@@ -103,7 +102,9 @@ class LoginForm extends Component {
             <label htmlFor="age">Age</label>
             <Input onChange={this.handleChange} key="age" type="number" value={this.state.age}/>
           </div>
+
           <ButtonSpacing>
+            <Button>Save Changes</Button>
             <Button onClick={this.handleSignUp}>Log-in</Button>
           </ButtonSpacing>
 

@@ -3,21 +3,21 @@ import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
 import {userPath, saveNewUser, singleUserPath} from '../actions/user.actions.js'
-import {addPost, editToggle, editPost, deletePost} from '../actions/post.actions.js'
 import axios from 'axios'
 import NavBar from './NavBar'
 import Footer from './Footer'
 
 class NewsFeed extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.userPath()
     console.log(userPath)
   }
 
   render() {
     return (<div>
-      }
+      <NavBar/>
+
       <h3>Add some friends!</h3>
       <div>
 
@@ -37,15 +37,10 @@ class NewsFeed extends Component {
         }
 
       </div>
-      {/* <Footer/> */}
+      <Footer/>
     </div>) } } const mapStateToProps = (state) => {return {users: state.users}}
     export default connect(mapStateToProps, {
       push,
       userPath,
       singleUserPath,
-      saveNewUser,
-      addPost,
-      deletePost,
-      editToggle,
-      editPost
-    })(NewsFeed)
+      saveNewUser  })(NewsFeed)

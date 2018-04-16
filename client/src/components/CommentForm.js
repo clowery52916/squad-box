@@ -31,7 +31,7 @@ class CommentForm extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault()
-    const user_id = this.props.match.params
+    const user_id = this.state.id
     console.log(user_id)
     const payload = this.state.new
     const response = await axios.post(`/api/users/${user_id}/posts`, payload)

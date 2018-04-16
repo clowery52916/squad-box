@@ -27,7 +27,7 @@ const Root = () => (
         <Route exact path="/" component={LandingPage}/>
         <Route exact path='/users' component={NewsFeed}/>
         <Route exact path='/users/:id' component={SingleUser}/>
-        {/* <Route exact path='/users/user_id/posts/:id' component={Posts} /> */}
+        <Route exact path='/users/user_id/posts/:id' component={Posts} />
       </div>
       </ConnectedRouter>
     </Provider>

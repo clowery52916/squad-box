@@ -38,8 +38,7 @@ class Navbar extends Component {
     return (<Nav>
       <LogoFlex>
         <Link to="/">
-          <h1>SqaudB {/* <BondLogo src="http://www.thedigitalbits.com/media/k2/items/cache/3d3b7d5d68132cc424920deb43e754bb_XL.jpg" alt="Bond Logo" /> */}
-            ox</h1>
+          <h2>SqaudBox</h2>
         </Link>
       </LogoFlex>
 

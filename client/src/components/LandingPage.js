@@ -64,6 +64,7 @@ class Home extends Component {
             <p>
               Real People. Real Life. Real Safe
             </p>
+
             <LoginForm/>
             <br/>
           </LandingText>
