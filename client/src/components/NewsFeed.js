@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
 import {userPath, saveNewUser, singleUserPath} from '../actions/user.actions.js'
+import {addPost, editToggle, editPost, deletePost} from '../actions/post.actions.js'
 import axios from 'axios'
 import NavBar from './NavBar'
 import Footer from './Footer'
@@ -13,38 +14,17 @@ class NewsFeed extends Component {
     this.props.userPath()
     console.log(userPath)
   }
-  // componentWillMount() {
-  //   this.props.saveNewUser()
-  //   console.log(saveNewUser)
-  // }
-  //
-  // componentWillReceiveProps(nextProps) {
-  //   this.props.userPath()
-  //   console.log(userPath)
-  // }
-  // componentWillUpdate(nextProps, nextState) {
-  //   this.props.singleUserPath()
-  //   console.log(singleUserPath)
-  // }
- render() {
+
+  render() {
     return (<div>
       <NavBar/>
-
-      {/* <div onClick={() => this.props.history.push(`/user/${user}`)}>
-        Profile
-      </div>
-      <div>
-        <button onClick={() => this.props.history.push(`/users/${user}`)}>
-        fuck off
-        </button>
-      </div> */
       }
       <h3>Add some friends!</h3>
       <div>
 
         {
           this.props.users.map((user) => {
-            return (<div>
+            return (<div key={user.id}>
 
               <div onClick={() => this.props.history.push(`/users/${user.id}`)}>
                 <img width={200} src={user.photo} alt={user.name}/>
@@ -58,11 +38,15 @@ class NewsFeed extends Component {
         }
 
       </div>
-<Footer/>
-    </div>)
-  }
-}
-const mapStateToProps = (state) => {
-  return {users: state.users}
-}
-export default connect(mapStateToProps, {push, userPath, singleUserPath, saveNewUser})(NewsFeed)
+      <Footer/>
+    </div>) } } const mapStateToProps = (state) => {return {users: state.users}}
+    export default connect(mapStateToProps, {
+      push,
+      userPath,
+      singleUserPath,
+      saveNewUser,
+      addPost,
+      deletePost,
+      editToggle,
+      editPost
+    })(NewsFeed)

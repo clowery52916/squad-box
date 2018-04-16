@@ -3,10 +3,6 @@ import axios from 'axios'
 import {Button} from 'semantic-ui-react'
 import EditPost from './EditPost'
 import styled from 'styled-components'
-import {connect} from 'react-redux'
-import {push} from 'react-router-redux'
-import {editToggle, getPost, deleteToggle, deletePost } from '../actions/post.actions.js'
-
 
 const PostContainer = styled.div `
     text-align: center;
@@ -45,8 +41,8 @@ class Posts extends Component {
   }
 
   getPost = async () => {
-    const postId = this.state.postId
-    const res = await axios.get(`/api/users/:user_id/posts/:id`)
+    const postId = this.state.id
+    const res = await axios.get(`/api/users/:user_id/posts/${postId}`)
     // console.log(res.data)
     this.setState({post: res.data})
   }
@@ -70,8 +66,8 @@ class Posts extends Component {
   }
 
   deletePost = async () => {
-    const postId = this.props.match.params.id
-    const userId = this.state.post.user_id
+    const postId = this.state.id
+    const userId = this.state.post.userId
     console.log(userId)
     await axios.delete(`/api/users/${userId}/posts/${postId}`)
     this.props.history.push(`/users/${userId}`)
@@ -97,7 +93,7 @@ class Posts extends Component {
       <ButtonSpacing>
         {
           this.state.editToggle
-            ? (<EditPost userId={this.state.post.user_id} postId={this.props.match.params.id} getPost={this.getPost} editToggle={this.editToggle}/>)
+            ? (<EditPost userId={this.state.user_id} postId={this.state.id} getPost={this.getPost} editToggle={this.editToggle}/>)
             : null
         }
       </ButtonSpacing>
@@ -121,8 +117,4 @@ class Posts extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {update: state.update}
-}
-
-export default connect(mapStateToProps, {push, editToggle, getPost})(Posts);
+export default Posts;

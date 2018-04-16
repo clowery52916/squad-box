@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
-import {editToggle, getPost } from '../actions/post.actions.js'
+import {editToggle, addPost } from '../actions/post.actions.js'
 
 
 const FormStyle = styled.div `
@@ -20,13 +20,12 @@ margin: 10px auto;
 class PostForm extends Component {
   state = {
     post: {
-      title: '',
       body: ''
     },
     createdPost: {}
   }
 
-  getPost = () => {
+  addPost = () => {
     axios.get(`/api/users/`, {post: this.state.post}).then((res) => {
       this.setState({redirectToAllUsers: true, createdPost: res.data})
     })
@@ -72,7 +71,7 @@ class PostForm extends Component {
           <textarea placeholder="Comment must contain at least 20 characters." onChange={this.handleChange} type="text" name="post" require={this.state.post}/>
           <ButtonStyle>
             <Button>Submit</Button>
-            <Button onClick={this.props.getPost}>Cancel</Button>
+            <Button onClick={this.props.addPost}>Cancel</Button>
           </ButtonStyle>
         </div>
 
@@ -85,4 +84,4 @@ const mapStateToProps = (state) => {
   return {update: state.update}
 }
 
-export default connect(mapStateToProps, {push, editToggle, getPost})(PostForm);
+export default connect(mapStateToProps, {push, editToggle, addPost})(PostForm);

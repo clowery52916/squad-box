@@ -6,22 +6,22 @@ export function incrementPost (index) {
         index
     }
 }
-export function getPost (user) {
+export function addPost (id) {
   return {
-    type: 'GET_POST',
+    type: 'ADD_POST',
     post: {
-      id: uuid(),
-      user: user,
-      likes: false
-    }
+      body:'',
+
+    },
+    likes: false
   }
 }
 
-export function editPost (id, user) {
+export function editPost (id) {
   return {
     type: 'EDIT_POST',
     id,
-    user
+
   }
 }
 

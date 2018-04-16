@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
-import {editToggle, getPost } from '../actions/post.actions.js'
+import {editToggle, addPost } from '../actions/post.actions.js'
 
 
 const FormContainer = styled.div`
@@ -33,22 +33,22 @@ class EditPost extends Component {
 
   handleSubmit = async event => {
     event.preventDefault();
-    const userId = this.props.userId;
-    const postId = this.props.postId;
+    const user_id = this.props.user_id;
+    const postId = this.state.id
     const update = this.state.update;
     const res = await axios.patch(
-      `/api/users/${userId}/posts/${postId}`,
+      `/api/users/${user_id}/posts/${postId}`,
       update
     );
     console.log(res.data);
     this.props.editToggle();
-    this.props.getPost();
+    this.props.addPost();
   };
 
   render() {
     return (
       <FormContainer>
-        {console.log(this.props.userId)}
+        {console.log(this.props.user_id)}
         {console.log(this.props.postId)}
         <Form onSubmit={this.handleSubmit}>
           <div>
@@ -88,4 +88,4 @@ const mapStateToProps = (state) => {
   return {update: state.update}
 }
 
-export default connect(mapStateToProps, {push, editToggle, getPost})(EditPost);
+export default connect(mapStateToProps, {push, editToggle, addPost})(EditPost);

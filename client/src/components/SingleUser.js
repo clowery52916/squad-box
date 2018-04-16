@@ -76,8 +76,8 @@ class SingleUser extends Component {
           {/* <Posts /> */}
         </InfoContainer>
       </SingleUserPage>
-      <EditPost/>
-      <Posts/>
+      {/* <EditPost/>
+      <Posts/> */}
       {/* <CommentForm/> */}
       <PostsForm/>
       <Footer/>
