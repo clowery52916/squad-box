@@ -17,7 +17,6 @@ class NewsFeed extends Component {
 
   render() {
     return (<div>
-      <NavBar/>
       }
       <h3>Add some friends!</h3>
       <div>
@@ -38,7 +37,7 @@ class NewsFeed extends Component {
         }
 
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </div>) } } const mapStateToProps = (state) => {return {users: state.users}}
     export default connect(mapStateToProps, {
       push,

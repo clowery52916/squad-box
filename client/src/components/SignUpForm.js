@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
-import { Button, Form, Message } from 'semantic-ui-react'
+import {Button, Form, Message} from 'semantic-ui-react'
 import {saveNewUser} from '../actions/user.actions.js'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
@@ -16,7 +16,7 @@ class SignUpForm extends Component {
       age: ''
     },
     createdUser: {},
-    redirectToAllUsers: false,
+    redirectToAllUsers: false
   }
 
   saveNewUser = () => {
@@ -50,7 +50,7 @@ class SignUpForm extends Component {
     return (<div>
       <form onSubmit={this.handleSubmit}>
         <div>
-          <label htmlFor="email" htmlFor="userName">Email</label>
+          <label htmlFor="userName">Email</label>
           <input onChange={this.handleChange} name="email" type="text" value={this.state.email}/>
         </div>
         <div>
@@ -63,7 +63,7 @@ class SignUpForm extends Component {
         </div>
         <button onClick={this.handleSignUp}>Sign Up</button>
       </form>
-<br/>
+      <br/>
 
     </div>)
   }

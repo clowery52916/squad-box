@@ -12,7 +12,6 @@ const DeleteWarning = styled.div `
  border: 1px solid red;
  color: red;
  font-size: 40px;
- }
 `
 
 const PostStyle = styled.div `
@@ -43,7 +42,6 @@ class Posts extends Component {
   getPost = async () => {
     const postId = this.state.id
     const res = await axios.get(`/api/users/:user_id/posts/${postId}`)
-    // console.log(res.data)
     this.setState({post: res.data})
   }
 

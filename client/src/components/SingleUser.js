@@ -44,43 +44,32 @@ const InfoContainer = styled.div `
    h3{
      font-style: italic;
    }
-`;
-
-// const UserCard = styled.div`
-//   border: 1px solid #EAEAEA;
-//   background: rgb(135, 138, 134);
-//     width: 100vw;
-// `
-
+`
 class SingleUser extends Component {
 
   render() {
     return (<div>
-      <NavBar/>
 
       <ImageContainer className='pic' src={this.props.user.photo} alt={this.props.user.name}/>
 
       <SingleUserPage>
         <h2>Hello, {this.props.user.name}!</h2>
         <InfoContainer>
-          <h4>Account Info </h4>
+          <h4>Account Info
+          </h4>
           <h4>Age: {this.props.user.age}</h4>
           <h4>Email: {this.props.user.email}</h4>
           <h4>Your Post History:
-            <br/>
-             {this.props.user.post}</h4>
+            <br/> {this.props.user.post}</h4>
           <h4>Comments you've made:
-            <br/>
-            {this.props.user.comment}</h4>
-          {/* <Comments/> */}
-          {/* <Posts /> */}
+            <br/> {this.props.user.comment}</h4>
         </InfoContainer>
       </SingleUserPage>
-      {/* <EditPost/>
-      <Posts/> */}
-      {/* <CommentForm/> */}
+      <EditPost/>
+      <Posts/>
+      <CommentForm/>
       <PostsForm/>
-      <Footer/>
+      {/* <Footer/> */}
     </div>)
   }
 }

@@ -54,7 +54,6 @@ class Home extends Component {
   render() {
     return (<div>
       <h1>
-        <Link to='/'> SquadBox </Link>
       </h1>
       <HomeContainer>
         <NavBar/>
@@ -62,7 +61,6 @@ class Home extends Component {
 
           <LandingText>
             <WebCam/>
-            <h1>SquadBox</h1>
             <p>
               Real People. Real Life. Real Safe
             </p>
