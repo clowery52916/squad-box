@@ -22,12 +22,16 @@ Rails
 
 3rd Party Api
 Karios Api
-Turtorial credits: https://codeburst.io/facial-recognition-using-react-redux-and-kairos-to-identify-yourself-18a0f0933556
+Turtorial credits:
 
-Wireframe
+https://codeburst.io/facial-recognition-using-react-redux-and-kairos-to-identify-yourself-18a0f0933556
+
+Wireframe:
+
 https://i.imgur.com/NqqGjAi.jpg
 
-Scrum Folder 
+Scrum Folder:
+
 https://i.imgur.com/2YPqio8.jpg
 https://i.imgur.com/IwPgU9i.jpg
 https://i.imgur.com/ufyOXBT.jpg
@@ -39,6 +43,7 @@ https://i.imgur.com/7EwYV2O.jpg
 https://i.imgur.com/kVTb3vy.jpg
 
 
-Data Model 
+Data Model:
+
 https://imgur.com/zABPWFN
 
