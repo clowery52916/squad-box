@@ -1,6 +1,7 @@
 # SQUAD-BOX
 
 React-Redux-Rails App 
+This application is delpoyed on heroku. Please visit this app by visiting this link. https://squadbox.herokuapp.com/
 
 I created this app in the hopes to stop sex offenders from being able to friend childen on social media sites. 
 The process I used for creating this application was my portable scrum board. I like a very hands on approach to things, and having a physical board is very helpful in keeping me on track and progressing through the application. 
@@ -16,11 +17,11 @@ I struggled with this project a little as I was teaching myself redux while I wa
 Technologies Used
 JavaScript
 React
-React WebCam
+React WebCam - https://github.com/mozmorris/react-webcam
 Redux
 Rails 
 
-3rd Party Api
+3rd Party Api Used:
 Karios Api
 Turtorial credits:
 
