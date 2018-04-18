@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "animated-styled-components": "^0.2.6",
-    "combine-reducers-global-state": "^1.0.1",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
     "material-ui": "^0.20.0",
