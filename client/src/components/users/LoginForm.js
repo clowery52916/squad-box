@@ -3,9 +3,27 @@ import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
 import { Button, Form, Message } from 'semantic-ui-react'
-import {saveNewUser, saveEditUser, singleUserPath} from '../actions/user.actions.js'
+import {saveNewUser, saveEditUser, singleUserPath} from '../../actions/user.actions.js'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
+
+const FormContainer = styled.div`
+  width: 60vw;
+  margin: 20px auto;
+  align-items:
+`;
+
+const ButtonSpacing = styled.div`
+margin: 10px;
+`;
+const FormStyle = styled.div `
+margin: 20px auto;
+background: white;
+color: #151515;
+width: 60%;
+border-radius: 6px;
+align-items: center;
+`
 
 class LoginForm extends Component {
   state = {
@@ -55,7 +73,7 @@ class LoginForm extends Component {
   handleSignUp = (e) => {
     e.preventDefault()
     this.saveNewUser()
-    console.log('handleSignUp')
+    console.log('handleChange')
   }
 
   // handleUpdate = (e) => {
@@ -72,28 +90,36 @@ class LoginForm extends Component {
       console.log("REDIRECTING TO ALL USERS", this.state.createdUser)
       return <Redirect to='/users' />
     }
-    return (<div>
+    return (
+      <FormContainer>
+      <div>
       <form onSubmit={this.handleSubmit}>
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Name:  </label>
           <input onChange={this.handleChange} name="name" type="text" value={this.state.name}/>
         </div>
         <div>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email: </label>
           <input onChange={this.handleChange} name="email" type="text" value={this.state.email}/>
         </div>
         <div>
-          <label htmlFor="name">Password</label>
+          <label htmlFor="name">Password: </label>
           <input onChange={this.handleChange} name="password" type="text" value={this.state.password}/>
         </div>
         <div>
-          <label htmlFor="age">Age</label>
+          <label htmlFor="age">Age: </label>
           <input onChange={this.handleChange} name="age" type="text" value={this.state.age}/>
         </div>
+        <br/>
+        <ButtonSpacing>
         <button onClick={this.handleSignUp}>Log-in</button>
+        </ButtonSpacing>
+
       </form>
 
-    </div>)
+    </div>
+  </FormContainer>
+  )
   }
 }
 const mapStateToProps = (state) => {

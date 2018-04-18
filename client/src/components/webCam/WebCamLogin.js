@@ -64,7 +64,7 @@ export default class WebCamLogin extends Component {
                 <div style={{
                     'textAlign' : 'center'
                   }}>
-                  <h3>REGISTER FACE</h3>
+                  <h3>Register Face</h3>
                   <div>
                     <div
                       audio={false}
@@ -75,12 +75,12 @@ export default class WebCamLogin extends Component {
                       </div>
                     <button onClick={this.capture}>Capture photo</button>
                   </div>
-                  <Button className='register-button' onClick={this.capture} label="REGISTER" primary={true} style={{
+                  {/* <Button className='register-button' onClick={this.capture} label="REGISTER" primary={true} style={{
                       'margin' : 30
-                    }}/>
-                  <Button className='register-button' onClick={this.resetGallery} label="RESET GALLERY" primary={true} style={{
+                    }}/> */}
+                  {/* <Button className='register-button' onClick={this.resetGallery} label="RESET GALLERY" primary={true} style={{
                       'margin' : 16
-                    }}/>
+                    }}/> */}
                   <div detect={this.props.regData}/>
                 </div>
               </Grid.Column>

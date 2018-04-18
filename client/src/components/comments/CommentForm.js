@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import {Form, Input, Button} from 'semantic-ui-react'
 import axios from 'axios'
 import styled from 'styled-components'
-import {toggleComment, addComment } from '../actions/comment.actions.js'
-import {connect} from 'react-redux'
-import {push} from 'react-router-redux'
 
 const FormStyle = styled.div `
 width: 60vw;
@@ -18,7 +15,6 @@ margin: 10px auto;
 class CommentForm extends Component {
   state = {
     new: {
-      title: '',
       comment: ''
     }
   }
@@ -34,10 +30,10 @@ class CommentForm extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault()
-    const user_id = this.state.id
-    console.log(user_id)
+    const user = this.props.match.params
+    console.log(user)
     const payload = this.state.new
-    const response = await axios.post(`/api/users/${user_id}/posts`, payload)
+    const response = await axios.post(`/api/users/${user}/posts`, payload)
     console.log(response.data)
     const posts = [
       ...this.state.new,
@@ -45,16 +41,16 @@ class CommentForm extends Component {
     ]
     this.setState({new: posts})
     this.props.toggleCommentForm()
-    await this.props.getPost(user_id)
+    await this.props.getPost(user)
   }
 
   render() {
     return (<FormStyle>
       <Form onSubmit={this.handleSubmit}>
         <div>
-          <label>title</label>
+          <label>post</label>
         </div>
-        <Input placeholder="title" onChange={this.handleChange} type="text" name="title" required="required" value={this.state.title}/>
+        <Input placeholder="post" onChange={this.handleChange} type="text" name="title" required="required" value={this.state.post}/>
         <div>
           <div>
             <label>comment</label>
@@ -71,8 +67,4 @@ class CommentForm extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {update: state.update}
-}
-
-export default connect(mapStateToProps, {push, toggleComment, addComment})(CommentForm);
+export default CommentForm;

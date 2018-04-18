@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
-import {editToggle, addPost } from '../actions/post.actions.js'
+import {editToggle, addPost } from '../../actions/post.actions.js'
 
 
 const FormStyle = styled.div `
@@ -19,9 +19,8 @@ margin: 10px auto;
 
 class PostForm extends Component {
   state = {
-    post: {
-      body: ''
-    },
+    post: '',
+
     createdPost: {}
   }
 

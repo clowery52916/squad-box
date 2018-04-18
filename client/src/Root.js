@@ -8,13 +8,12 @@ import { connectHistory } from 'redux-history';
 import configureStore from './configureStore.js'
 //routing to my componenents
 import LandingPage from './components/LandingPage'
-import LoginForm from './components/LoginForm'
-import NewsFeed from './components/NewsFeed'
-import SingleUser from './components/SingleUser'
-import RegisterUserFace from './components/RegisterUserFace'
-import Posts from './components/Posts'
-import PostsForm from './components/PostsForm'
-
+import LoginForm from './components/users/LoginForm'
+import NewsFeed from './components/users/NewsFeed'
+import SingleUser from './components/users/SingleUser'
+import Posts from './components/posts/Posts'
+import PostsForm from './components/posts/PostsForm'
+import RegisterUserFace from './components/kairosApi/RegisterUserFace'
 
 const history = createHistory()
 const store = configureStore(history)

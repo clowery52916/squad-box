@@ -4,7 +4,7 @@ import styled from "styled-components";
 const FooterStyle = styled.div`
   height: 15vh;
   width: 100vw;
-  background-color: #151515;
+  background-color: #aaaaaa;
   color: #EAEAEA;
   display: flex;
   justify-content: flex-end;
@@ -15,13 +15,19 @@ const FooterStyle = styled.div`
     margin: 20px;
   }
 `;
+const TextContainer = styled.div`
+  font-family: cursive;
+  color: inherit;
+`
 
 class Footer extends Component {
   render() {
     return (
       <div>
         <FooterStyle>
+          <TextContainer>
           <h5>Copyright 2018</h5>
+          </TextContainer>
         </FooterStyle>
       </div>
     );

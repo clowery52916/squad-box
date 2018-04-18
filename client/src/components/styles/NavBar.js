@@ -7,6 +7,7 @@ const Nav = styled.div `
   width: 100vw;
   background-color: #aaaaaa;
   color: white;
+  font-family: cursive;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,6 +22,8 @@ const Nav = styled.div `
 const LinkContainer = styled.div `
   display: flex;
   margin-right: 10px;
+  font-family: cursive;
+  color: inherit;
 `;
 
 const LinkMargin = styled.div `

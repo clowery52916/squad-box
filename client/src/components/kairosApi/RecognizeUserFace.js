@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 // import { Grid, Row, Column, Image, Button, style } from 'semantic-ui-react'
 import {Grid, Row, Col, Button} from 'react-flexbox-grid'
 import axios from 'axios'
-import WebCam from './WebCam'
-import Webcam_Image from './Webcam_Image'
-import SaveUserImage from './SaveUserImage'
+import WebCam from '../webCam/WebCam'
+import Webcam_Image from '../webCam/Webcam_Image'
+import SaveUserImage from '../webCam/SaveUserImage'
 import capture from 'react-webcam'
 import styled from 'styled-components'
-import {recognizeUser, clearUserData, saveUserFace} from '../actions/facial.actions.js';
+import {recognizeUser, clearUserData, saveUserFace} from '../../actions/facial.actions.js';
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import {ConnectedRouter} from 'react-router-redux'

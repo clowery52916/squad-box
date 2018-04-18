@@ -2,15 +2,25 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
-import {singleUserPath, getSingleUser} from '../actions/user.actions.js'
+import {singleUserPath, getSingleUser} from '../../actions/user.actions'
 import axios from 'axios'
-import NavBar from './NavBar'
-import CommentForm from './CommentForm'
-import EditPost from './EditPost'
-import Footer from './Footer'
-import PostsForm from './PostsForm'
+import NavBar from '../styles/NavBar'
+import CommentForm from '../comments/CommentForm'
+import EditPost from '../posts/EditPost'
+import Footer from '../styles/Footer'
+import PostsForm from '../posts/PostsForm'
 import {Image} from 'semantic-ui-react'
-import Posts from './Posts'
+import Posts from '../posts/Posts'
+
+const HomeContainer = styled.div `
+  text-align: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: #8f8d8d;
+  color: rgba(#9a97b8, 0.61);
+  font-family: cursive;
+  color: inherit;
+`;
 
 const SingleUserPage = styled.div `
   padding: 10px;
@@ -25,8 +35,8 @@ const SingleUserPage = styled.div `
 `
 
 const ImageContainer = styled.img `
-    max-height: 55vh;
-    width: 100vw;
+    max-height: 30vh;
+    width: 30vw;
     border-radius: 6px;
     image-orientation: center;
     flex-basis: auto;
@@ -49,10 +59,11 @@ class SingleUser extends Component {
 
   render() {
     return (<div>
+      <HomeContainer>
       <NavBar/>
       <ImageContainer className='pic' src={this.props.user.photo} alt={this.props.user.name}/>
 
-      <SingleUserPage>
+      {/* <SingleUserPage> */}
         <h2>Hello, {this.props.user.name}!</h2>
         <InfoContainer>
           <h4>Account Info
@@ -61,13 +72,14 @@ class SingleUser extends Component {
           <h4>Email: {this.props.user.email}</h4>
 
         </InfoContainer>
-      </SingleUserPage>
-      <EditPost/>
+      {/* </SingleUserPage> */}
+      {/* <EditPost/> */}
       <Posts/>
       {/* <PostsForm/> */}
       {/* <CommentForm/>
       <PostsForm/> */}
       <Footer/>
+      </HomeContainer>
     </div>)
   }
 }

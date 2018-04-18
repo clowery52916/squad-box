@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {saveEditUser, deleteUser} from '../actions/user.actions'
+import {saveEditUser, deleteUser} from '../../actions/user.actions'
 import styled from 'styled-components'
 import {Form, Input, Button} from "semantic-ui-react"
 import { Redirect } from 'react-router-dom'

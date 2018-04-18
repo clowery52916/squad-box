@@ -1,16 +1,11 @@
 import React, {Component} from 'react';
 import Webcam from 'react-webcam';
 // import '../styles/register.css';
-
 import axios from 'axios';
 import {Grid, Row, Col} from 'react-flexbox-grid';
-
 import {connect} from 'react-redux';
-import {signUpWithFace, clearUserData, saveUserFace} from '../actions/facial.actions.js';
-
+import {signUpWithFace, clearUserData, saveUserFace} from '../../actions/facial.actions.js';
 import RecognizeUserFace from './RecognizeUserFace';
-
-// material-ui components
 import Text from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import RefreshIndicator from 'material-ui/RefreshIndicator';

@@ -2,14 +2,14 @@ import React, {Component} from "react";
 import styled from "styled-components";
 import {Link} from 'react-router-dom'
 import {Button} from "semantic-ui-react";
-import WebCam from './WebCam'
-import LoginForm from './LoginForm'
-import SignUpForm from './SignUpForm'
-import SemanticGrid from "./SemanticGrid";
-import NavBar from './NavBar'
-import Footer from './Footer'
-import RecognizeUserFace from './RecognizeUserFace'
-import RegisterUserFace from './RegisterUserFace'
+import WebCam from './webCam/WebCam'
+import WebCamLogin from './webCam/WebCamLogin'
+import LoginForm from './users/LoginForm'
+import SemanticGrid from "./styles/SemanticGrid";
+import NavBar from './styles/NavBar'
+import Footer from './styles/Footer'
+import RecognizeUserFace from './kairosApi/RecognizeUserFace'
+import RegisterUserFace from './kairosApi/RegisterUserFace'
 
 const LandingImage = styled.div `
   background-image: url("");
@@ -32,10 +32,14 @@ const LandingText = styled.div `
   text-align: center;
   background: rgba(0, 0, 0, 0.2);
   padding: 20px;
-  color:;
   border-radius: 10px;
+  font-family: cursive;
+  color: inherit;
+
   LandingText.h1 {
-    font-size: 40px;
+    font-size: 30px;
+    font-family: cursive;
+    color: inherit;
   }
 `;
 const ButtonPadding = styled.div `
@@ -58,15 +62,13 @@ class Home extends Component {
 
           <LandingText>
             <WebCam/>
-            <h1>SquadBox</h1>
+
             <p>
               Real People. Real Life. Real Safe
             </p>
             <LoginForm/>
+            <WebCamLogin/>
             <br/>
-            <ButtonPadding>
-              <Button onClick={this.handleClick}>Log In</Button>
-            </ButtonPadding>
           </LandingText>
         </LandingImage>
         <BodyContent>

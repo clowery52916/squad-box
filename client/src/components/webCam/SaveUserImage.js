@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import Webcam from 'react-webcam';
 import {connect} from 'react-redux';
-import {findUserByFace, clearUserData} from '../actions/facial.actions';
-import SingleUser from './SingleUser'
+import {findUserByFace, clearUserData} from '../../actions/facial.actions';
+import SingleUser from '../users/SingleUser'
 import styled from 'styled-components'
 
 // material-ui component
-import Button from './Buttons';
+import Button from '../styles/Buttons';
 
 
 // loader styling

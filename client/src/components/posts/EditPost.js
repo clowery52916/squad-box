@@ -1,20 +1,19 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import {Button} from 'semantic-ui-react'
-import Posts from './Posts'
+import Posts from '../posts/Posts'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
-import {userPath, saveNewUser, singleUserPath} from '../actions/user.actions.js'
-import {deletePost, editToggle, editPost, addPost} from '../actions/post.actions.js'
-
+import {userPath, saveNewUser, singleUserPath} from '../../actions/user.actions.js'
+import {deletePost, editToggle, editPost, addPost, saveEditPost, singlePostPath} from '../../actions/post.actions'
 const PostContainer = styled.div `
     text-align: center;
 `
 
 const DeleteWarning = styled.div `
- border: 1px solid red;
- color: red;
+ border: 1px solid white;
+ color: white;
  font-size: 40px;
 `
 
@@ -33,9 +32,7 @@ margin: 20px;
 class EditPost extends Component {
   state = {
     user:{
-      posts:{
-        body:''
-      },
+      posts:''
     },
     deleteToggle: false,
     editToggle: false,
@@ -47,7 +44,7 @@ class EditPost extends Component {
   }
 
   editPost = async () => {
-    const postId = this.state.post.id
+    const postId = this.state.postId
     const res = await axios.patch(`/api/users/:user_id/posts/${postId}`)
     this.setState({post: res.data})
   }
@@ -71,8 +68,8 @@ class EditPost extends Component {
   }
 
   deletePost = async () => {
-    const post = this.state.post.id
-    const user = this.state.post.user.id
+    const post = this.state.post
+    const user = this.state.user
     console.log(user)
     console.log(post)
     await axios.delete(`/api/users/${user.id}/posts`)

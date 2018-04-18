@@ -10,7 +10,7 @@ User.destroy_all
 Post.destroy_all
 Comment.destroy_all
 
-court = User.create!(name: 'Courtney' , photo: 'https://i.imgur.com/I6wdfHL.jpg', password: 'qwerty1234', age: 34, email: 'clowery52916@gmail.com', post:['hello hello', 'would ya just look at that?'], comment:['omg!', 'looovvve your hair girl!', 'that pic is amaze...']  )
+court = User.create!(name: 'Courtney' , photo: 'https://i.imgur.com/I6wdfHL.jpg', password: 'qwerty1234', age: 34, email: 'clowery52916@gmail.com',  post: 'hello hello', comment:'looovvve your hair girl!' )
 
 my_post = Post.create!(post_body: 'Hello! I love this app!!!', like: 0, user_id: court.id)
 

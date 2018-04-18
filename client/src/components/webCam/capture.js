@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Webcam from 'react-webcam';
-import UserData from './user-data';
 import { connect } from 'react-redux';
 import { findUserByFace, startImageScan, clearData } from '../actions';
 import '../styles/register.css';

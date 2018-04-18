@@ -7,44 +7,71 @@ export function incrementPost (index) {
         index
     }
 }
-// export function editPost (id, userId) {
-//   return {
-//     type: 'ADD_POST',
-//     post: [{
-//       body:'',
-//       user:`${userId}`
-//     }]
-//
-//
-//     ,
-//     likes: false
-//   }
-// }
 
-export function addPost(addPostToUser, userId) {
-  return {type: 'ADD_POST', addPostToUser, userId}
+export function allPosts(returnUserPost) {
+  return {type: 'GET_POSTS', returnUserPost}
 }
 
-export function saveNewPost(saveNewPostInfo) {
+export function postPath(userId) {
   return function(dispatch) {
-    return axios.get('/api/users', saveNewPostInfo).then((response) => {
+    return axios.get(`/api/users/${userId}/posts`).then((response) => {
+      dispatch(allPosts(response.data))
+    })
+  }
+}
+
+///function to get post info
+export function getSinglePost(returnUserPost) {
+  return {type: 'GET_SINGLE_POST_DATA', returnUserPost}
+}
+
+export function singlePostPath(userId, postId) {
+  return function(dispatch) {
+    return axios.get(`/api/users/${userId}/posts/${postId}`).then((response) => {
+      console.log(getSinglePost)
+      dispatch(getSinglePost(response.data))
+    })
+  }
+}
+//get Post Info
+export function addPost(addPostInfo) {
+  return {type: 'CREATE_NEW_POST', addPostInfo}
+}
+
+export function saveNewPost(userId, addPostInfo) {
+  return function(dispatch) {
+    return axios.post(`/api/users/${userId}/posts/`, addPostInfo).then((response) => {
       dispatch(addPost(response.data))
     })
   }
 }
-
+//get function to get info from the post
 export function editPost(editPostInfo) {
-  return {type: 'EDIT_POST', editPostInfo}
+  console.log(editPostInfo)
+  return {type: 'EDIT_POST_INFO', editPostInfo}
 }
 
-export function saveEditPost(saveEditPostInfo) {
+export function saveEditPost(userId, saveEditPostInfo) {
+  console.log(saveEditPostInfo)
   return function(dispatch) {
-    return axios.get('/api/users', saveEditPostInfo).then((response) => {
-      dispatch(editPost(response.data))
+    return axios.put(`/api/users//${userId}/posts/${saveEditPostInfo}`, saveEditPostInfo).then((response) => {
+      dispatch(editPost(saveEditPostInfo))
     })
   }
 }
 
+export function deletePost(deletePostId) {
+  return {type: 'DELETE_POST', deletePostId}
+}
+
+export function killPost(userId, removePost) {
+  console.log(removePost)
+  return function(dispatch) {
+    return axios.delete(`/api/users/${userId}/posts/${removePost.id}`).then((response) => {
+      dispatch(deletePost(removePost.id))
+    })
+  }
+}
 export function editToggle (id) {
   return {
     type: 'EDIT_TOGGLE',
@@ -54,12 +81,6 @@ export function editToggle (id) {
 export function deleteToggle (id) {
   return {
     type: 'DELETE_TOGGLE',
-    id
-  }
-}
-export function deletePost (id) {
-  return {
-    type: 'DELETE_POST',
     id
   }
 }
