@@ -14,12 +14,18 @@ I would love to get the 3rd party api in and also get the camera working. I woul
 
 I struggled with this project a little as I was teaching myself redux while I was building it out. It was a very helpful way to learn and if I had built this when I was not under a deadline, I would have really dove into the docs more. I am eager to learn more about redux, from the research I did do, there are so many things that can be done with it! I can't wait to get hot reloader into my next application. 
 
-Technologies Used
+Technologies Used:
+
 JavaScript
+
 React
+
 React WebCam - https://github.com/mozmorris/react-webcam
+
 Redux
+
 Rails 
+
 
 3rd Party Api Used:
 Karios Api
