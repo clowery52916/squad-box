@@ -3,7 +3,6 @@ import { routerMiddleware } from 'react-router-redux'
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
-import combineReducers from 'combine-reducers-global-state';
 import reducer from './reducers';
 
 export default function configureStore (history) {
