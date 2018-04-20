@@ -4,13 +4,13 @@ import {push} from 'react-router-redux'
 import styled from 'styled-components'
 import {singleUserPath, getSingleUser} from '../../actions/user.actions'
 import axios from 'axios'
-import NavBar from '../styles/NavBar'
-import CommentForm from '../comments/CommentForm'
-import EditPost from '../posts/EditPost'
-import Footer from '../styles/Footer'
-import PostsForm from '../posts/PostsForm'
-import {Image} from 'semantic-ui-react'
 import Posts from '../posts/Posts'
+import EditPost from '../posts/EditPost'
+import PostsForm from '../posts/PostsForm'
+import Buttons from '../styles/Buttons'
+import Footer from '../styles/Footer'
+import NavBar from '../styles/NavBar'
+import {Image} from 'semantic-ui-react'
 
 const HomeContainer = styled.div `
   text-align: center;
@@ -70,14 +70,13 @@ class SingleUser extends Component {
           </h4>
           <h4>Age: {this.props.user.age}</h4>
           <h4>Email: {this.props.user.email}</h4>
+          <h4>Posts: {this.props.user.post}</h4>
 
         </InfoContainer>
-      {/* </SingleUserPage> */}
-      {/* <EditPost/> */}
-      <Posts/>
-      {/* <PostsForm/> */}
-      {/* <CommentForm/>
-      <PostsForm/> */}
+        <Buttons />
+        <PostsForm key={this.props.user.id} />
+        <Posts />
+        <EditPost/>
       <Footer/>
       </HomeContainer>
     </div>)

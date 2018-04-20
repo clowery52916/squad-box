@@ -1,14 +1,14 @@
 mport React, {Component} from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
-import {getOnePostRoute} from '../../actions/thunk.posts.js'
+import {getOnePostRoute} from '../../actions/post.actions.js'
 import Navbar from '../navbar/Navbar.js'
 
 class PostShow extends Component {
 
   state = {
       showEdit: false,
-      redirectToUsers: false
+      redirectToUsers: true
   }
 
   componentDidMount() {
@@ -16,7 +16,7 @@ class PostShow extends Component {
   }
 
   getPost = async() => {
-      const res = await axios.get(`/api/users/${this.props.match.params.userId}`)
+      const res = await axios.patch(`/api/users/${this.props.match.params.userId}/post`)
       this.setState({
           body: res.data.user.body,
 

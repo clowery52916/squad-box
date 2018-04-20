@@ -3,6 +3,7 @@ import {routerReducer as router} from 'react-router-redux' // we need this for r
 import users from './userIndex'
 import posts from './postReducer'
 import comments from './commentReducer'
+import visiblity from './visibilityReducer'
 import { locationReducer } from 'redux-history';
 
 
@@ -10,11 +11,12 @@ import { locationReducer } from 'redux-history';
 
 
 // Combine all reducers
-const rootReducer = combineReducers({ users, posts, comments, location, router })
+const rootReducer = combineReducers({ users, posts, comments, visiblity, location, router })
 
   ({userIndex,
     postReducer,
     commentReducer,
+    visiblity,
     routing: routerReducer,
     location: locationReducer})
 export default rootReducer

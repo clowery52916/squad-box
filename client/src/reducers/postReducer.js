@@ -1,75 +1,65 @@
-const getAllIds = gState => Object.keys(gState);
-
-function posts(state = [], action, globalState) {
-  switch (action.type) {
-    case 'INCREMENT_LIKES':
-      console.log("Incrementing Likes!!");
-      const i = action.index;
-      return [
-        ...state.slice(0, i), { // before the one we are updating
-          ...state[i],
-          likes: state[i].likes + 1
-        },
-        ...state.slice(i + 1), // after the one we are updating
-      ]
-    default:
-      return state;
+export const defaultState = [
+  {
+    id: 0,
+    body: 'Test this post Page',
+    completed: true
+  },
+  {
+    id: 1,
+    body: 'yeha yeah yeah ',
+    completed: true
+  },
+  {
+    id: 2,
+    body: 'love ur hair',
+    completed: true
   }
+]
 
+function posts (state = defaultState, action) {
   switch (action.type) {
+    case 'EDIT_POST':
+      return state.map(post => {
+        if (post.id === action.id) {
+          post.body = action.body
+        }
+        return post
+      })
 
-    case 'GET_POST':
-      return [action.getPost]
+    case 'TOGGLE_POST':
 
-    case 'GET_SINGLE_POST':
-      return [
-        ...state,
-        action.getOnePost
-      ]
+      // state is the current amount of posts
+      // all objects with an id, body, and completed
+      // find a specific object, and update completed value
+      // return new array
+
+      // return state.map((post) => {
+      //   if (post.id === action.id) {
+      //     post.completed = !post.completed
+      //   }
+      //   return post
+      // })
+
+      const newState = [ ...state ]
+      const postToChange = newState.find(post => post.id === action.id)
+      postToChange.completed = !postToChange.completed
+      return newState
+
 
     case 'ADD_POST':
-      return [
-        ...state,
-        action.addPost
-      ]
 
-      switch (action.type) {
-        case 'EDIT_POST':
-          return state.map(post => {
-            if (post.id === action.id) {
-              post.user = action.user
-            }
-            return post
-          })
+      // When this is called.
+      // return all existing posts
+      // with addition of new post
+      return [ ...state, action.post ]
 
-        case 'TOGGLE_EDIT':
-
-          const newState = [...state]
-          const postToChange = newState.find(post => post.id === action.id)
-          postToChange.completed = !postToChange.completed
-          return newState
-
-        case 'DELETE_TOGGLE':
-          return state.filter(post => post.id !== action.deletePost)
-          case 'ADD_ALL_ITEMS':
-              return getAllIds(globalState);
-            //  remove all displayed items
-            case 'REMOVE_ALL_ITEMS':
-              return [];
-            default:
-              return state
-      }
-  }
-
-  function updatePost(state : action, savePost) {
-    return state.map((post) => {
-      if (post.id !== action.savePost.id) {
-        return post
-      }
-      return {
-        ...post,
-        ...action.editPost
-      }
-    })
+    case 'DELETE_POST':
+      return state.filter(post => {
+        return post.id !== action.id
+      })
+    default:
+      return state
   }
 }
+
+export default posts

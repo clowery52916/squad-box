@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
 import {userPath, saveNewUser, singleUserPath} from '../../actions/user.actions.js'
-import {deletePost, editToggle, editPost, addPost, saveEditPost, singlePostPath} from '../../actions/post.actions'
+import {deletePost, togglePost, editPost, addPost, saveEditPost, singlePostPath} from '../../actions/post.actions'
 const PostContainer = styled.div `
     text-align: center;
 `
@@ -32,22 +32,23 @@ margin: 20px;
 class EditPost extends Component {
   state = {
     user:{
-      posts:''
+      post:''
     },
-    deleteToggle: false,
-    editToggle: false,
-    button: true
+
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.editPost()
-  }
+    handleChange = (event) => {
+      this.setState({ post: event.target.value })
+    }
 
-  editPost = async () => {
-    const postId = this.state.postId
-    const res = await axios.patch(`/api/users/:user_id/posts/${postId}`)
-    this.setState({post: res.data})
-  }
+    handleSubmit = (event) => {
+      event.preventDefault()
+      this.props.editPost(
+        this.props.id,
+        this.state.post
+      )
+      this.setState({ post: '' })
+    }
 
   deleteToggle = () => {
     this.setState({
@@ -58,9 +59,9 @@ class EditPost extends Component {
     })
   }
 
-  editToggle = () => {
+  togglePost = () => {
     this.setState({
-      editToggle: !this.state.editToggle
+      togglePost: !this.state.togglePost
     })
     this.setState({
       button: !this.state.button
@@ -79,24 +80,26 @@ class EditPost extends Component {
   render() {
     return (<PostContainer>
       <PostStyle>
-        <div>
-          <h1>{this.state.user.post}</h1>
-        </div>
-        <div>
-          {/* <p>{this.state.post.body}</p> */}
-        </div>
+        <form onSubmit={this.handleSubmit}>
+        <label htmlFor="body">Edit Your Post </label>
+        <input
+          type="text"
+          onChange={this.handleChange}
+          value={this.state.todo}/>
+        <button type="submit">Edit</button>
+      </form>
       </PostStyle>
       {
         this.state.button
           ? (<div>
-            <Button onClick={this.editToggle}>Edit</Button>
+            <Button onClick={this.togglePost}>Edit</Button>
           </div>)
           : null
       }
       <ButtonSpacing>
         {
-          this.state.editToggle
-            ? (<Posts userId={this.state.user_id} postId={this.state.post_id} editPost={this.editPost} editToggle={this.editToggle}/>)
+          this.state.togglePost
+            ? (<Posts userId={this.state.user_id} postId={this.state.post_id} editPost={this.editPost} togglePost={this.togglePost}/>)
             : null
         }
       </ButtonSpacing>
@@ -125,4 +128,4 @@ export default connect(mapStateToProps, {
  push,
  userPath,
  singleUserPath,
- saveNewUser, deletePost, editToggle, editPost, addPost })(EditPost)
+ saveNewUser, deletePost, togglePost, editPost, addPost })(EditPost)

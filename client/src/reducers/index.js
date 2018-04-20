@@ -8,13 +8,14 @@ import { locationReducer } from 'redux-history';
 import recognize from './recognizeByFaceReducer'
 import signUpWithFace from './signUpUserWithFaceReducer'
 import savedImage from './savedImageReducer'
+import visiblity from './visiblityReducer'
 
 
 
 
 // Combine all reducers
 const rootReducer = combineReducers
-({ users, signUpWithFace, comment, post, router, recognize, findUserByFace, savedImage})
+({ users, signUpWithFace, comment, post, router, recognize, findUserByFace, savedImage, visiblity})
   location: locationReducer
 
 export default rootReducer

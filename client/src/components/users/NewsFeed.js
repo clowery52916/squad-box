@@ -3,10 +3,11 @@ import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
 import {userPath, saveNewUser, singleUserPath} from '../../actions/user.actions.js'
-import {deletePost, editToggle, editPost, addPost} from '../../actions/post.actions.js'
+import {deletePost, togglePost, editPost, addPost} from '../../actions/post.actions.js'
 import axios from 'axios'
 import NavBar from '../styles/NavBar'
 import Footer from '../styles/Footer'
+import Posts from '../posts/Posts'
 
 const HomeContainer = styled.div `
   text-align: center;
@@ -26,10 +27,10 @@ class NewsFeed extends Component {
     console.log(userPath)
   }
 
-  componentWillUpdate() {
-    this.props.addPost()
-    console.log(addPost)
-  }
+  // handleChange() {
+  //   this.props.singleUserPath()
+  //   console.log(singleUserPath)
+  // }
 
   render() {
     return (<div>
@@ -41,15 +42,15 @@ class NewsFeed extends Component {
       <div>
 
         {
-          this.props.users.map((user) => {
-            return (<div key={user.id}>
+          this.props.users.map((userId) => {
+            return (<div key={userId}>
 
-              <div onClick={() => this.props.history.push(`/users/${user.id}`)}>
-                <img width={200} src={user.photo} alt={user.name}/>
-                <br/> {user.name}
-                <br/> {user.email}
-                <br/> {user.age}
-                <br/>{user.posts}
+              <div onClick={() => this.props.history.push(`/users/${userId.id}`)}>
+                <img width={200} src={userId.photo} alt={userId.name}/>
+                <br/> {userId.name}
+                <br/> {userId.email}
+                <br/> {userId.age}
+                <br/>{userId.posts}
               </div>
 
 
@@ -58,6 +59,7 @@ class NewsFeed extends Component {
         }
 
       </div>
+      <Posts/>
       <Footer/>
     </HomeContainer>
     </div>) } } const mapStateToProps = (state) => {return {users: state.users};{posts: state.posts}}
@@ -65,4 +67,4 @@ class NewsFeed extends Component {
       push,
       userPath,
       singleUserPath,
-      saveNewUser, deletePost, editToggle, editPost, addPost })(NewsFeed)
+      saveNewUser, deletePost, togglePost, editPost })(NewsFeed)

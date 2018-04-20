@@ -32,7 +32,7 @@ export function getSingleUser(returnUser) {
 
 export function singleUserPath(userId) {
   return function(dispatch) {
-    return axios.post(`/api/users/${userId}`, userId).then((response) => {
+    return axios.post(`/api/users/`, userId).then((response) => {
       console.log(getSingleUser)
       dispatch(getSingleUser(response.data))
     })
