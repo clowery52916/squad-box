@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
 import {userPath, saveNewUser, singleUserPath} from '../../actions/user.actions.js'
-import {deletePost, togglePost, editPost, addPost, saveEditPost, singlePostPath} from '../../actions/post.actions'
+import {deletePost, editToggle, editPost, addPost, saveEditPost, singlePostPath} from '../../actions/post.actions'
 const PostContainer = styled.div `
     text-align: center;
 `
@@ -59,9 +59,9 @@ class EditPost extends Component {
     })
   }
 
-  togglePost = () => {
+  editToggle = () => {
     this.setState({
-      togglePost: !this.state.togglePost
+      editToggle: !this.state.editToggle
     })
     this.setState({
       button: !this.state.button
@@ -92,14 +92,14 @@ class EditPost extends Component {
       {
         this.state.button
           ? (<div>
-            <Button onClick={this.togglePost}>Edit</Button>
+            <Button onClick={this.editToggle}>Edit</Button>
           </div>)
           : null
       }
       <ButtonSpacing>
         {
-          this.state.togglePost
-            ? (<Posts userId={this.state.user_id} postId={this.state.post_id} editPost={this.editPost} togglePost={this.togglePost}/>)
+          this.state.editToggle
+            ? (<Posts userId={this.state.user_id} postId={this.state.post_id} editPost={this.editPost} editToggle={this.editToggle}/>)
             : null
         }
       </ButtonSpacing>
@@ -128,4 +128,4 @@ export default connect(mapStateToProps, {
  push,
  userPath,
  singleUserPath,
- saveNewUser, deletePost, togglePost, editPost, addPost })(EditPost)
+ saveNewUser, deletePost, editToggle, editPost, addPost })(EditPost)

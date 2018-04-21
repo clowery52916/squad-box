@@ -5,7 +5,7 @@ import styled from "styled-components";
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import { Redirect } from 'react-router-dom'
-import {editToggle, editPost, saveNewPost, addPost, saveEditPost, deletePost } from '../../actions/post.actions'
+import {editToggle, editPost, saveNewPost, addPost, deletePost } from '../../actions/post.actions'
 import EditPost from './EditPost'
 
 const FormContainer = styled.div`
@@ -20,7 +20,7 @@ class Posts extends Component {
   state = {
     post: {
       user_id: 1,
-        saveEditPost: false
+        addPost: false
     }
   }
 
@@ -46,23 +46,23 @@ editPost
   };
 
   toggleEdit = () => {
-    this.setState({ saveEditPost: !this.state.saveEditPost })
+    this.setState({ addPost: !this.state.addPost })
   };
 
   handleSubmit = async e => {
     e.preventDefault()
     const userId = this.state.userId
-    const userUpdate = { ...this.state.user }
-    await axios.post(`/users/${userId}`, userUpdate)
+    const postUpdate = { ...this.state.user }
+    await axios.post(`/users/${userId}/post`, postUpdate)
     this.toggleEdit()
     await this.addPost()
   };
 
   handleChange = e => {
-    const user = e.target.name
-    const newArtist = { ...this.state.user }
-    newArtist[ user ] = e.target.value
-    this.setState({ user: newArtist })
+    const post = e.target.name
+    const newPost = { ...this.state.post }
+    newPost[ post ] = e.target.value
+    this.setState({ post: newPost })
   };
 
   render() {
@@ -99,4 +99,4 @@ const mapStateToProps = (state) => {
   return {addPost: state.addPost}
 }
 
-export default connect(mapStateToProps, {push, editToggle, editPost, addPost, saveNewPost, saveEditPost, deletePost})(Posts);
+export default connect(mapStateToProps, {push, editToggle, editPost, saveNewPost, addPost, deletePost})(Posts);

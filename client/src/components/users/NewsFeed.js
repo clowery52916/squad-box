@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
 import {userPath, saveNewUser, singleUserPath} from '../../actions/user.actions.js'
-import {deletePost, togglePost, editPost, addPost} from '../../actions/post.actions.js'
+import {deletePost, editToggle, editPost, addPost} from '../../actions/post.actions.js'
 import axios from 'axios'
 import NavBar from '../styles/NavBar'
 import Footer from '../styles/Footer'
@@ -67,4 +67,4 @@ class NewsFeed extends Component {
       push,
       userPath,
       singleUserPath,
-      saveNewUser, deletePost, togglePost, editPost })(NewsFeed)
+      saveNewUser, deletePost, editToggle, editPost })(NewsFeed)

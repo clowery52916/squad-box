@@ -75,8 +75,8 @@ class SingleUser extends Component {
         </InfoContainer>
         <Buttons />
         <PostsForm key={this.props.user.id} />
-        <Posts />
-        <EditPost/>
+        {/* <Posts />
+        <EditPost/> */}
       <Footer/>
       </HomeContainer>
     </div>)

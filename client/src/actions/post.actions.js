@@ -34,7 +34,7 @@ export function saveEditedPost(saveEdittedPost) {
   }
 }
 
-export function togglePost (id) {
+export function editToggle (id) {
   return {
     type: 'TOGGLE_POST',
     id
