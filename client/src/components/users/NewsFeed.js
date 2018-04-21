@@ -2,12 +2,13 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
-import {userPath, saveNewUser, singleUserPath} from '../../actions/user.actions.js'
+import {killUser, singleUserPath, userPath} from '../../actions/user.actions.js'
 import {deletePost, editToggle, editPost, addPost} from '../../actions/post.actions.js'
 import axios from 'axios'
 import NavBar from '../styles/NavBar'
 import Footer from '../styles/Footer'
 import Posts from '../posts/Posts'
+import {Button} from 'semantic-ui-react'
 
 const HomeContainer = styled.div `
   text-align: center;
@@ -38,22 +39,32 @@ class NewsFeed extends Component {
       <NavBar/>
 
       <h3>Add some friends!</h3>
-
+      <div>
+        <Button onClick={() => this.props.push(`/`)}>home</Button>
+        <Button onClick={() => this.props.push('/users/new')}>new user</Button>
+      </div>
       <div>
 
         {
-          this.props.users.map((userId) => {
-            return (<div key={userId}>
+          this.props.users.map((user, i) => {
+            return (<div key={i}>
 
-              <div onClick={() => this.props.history.push(`/users/${userId.id}`)}>
-                <img width={200} src={userId.photo} alt={userId.name}/>
-                <br/> {userId.name}
-                <br/> {userId.email}
-                <br/> {userId.age}
-                <br/>{userId.posts}
+              <div onClick={() => this.props.push(`/users/${user.id}`)}>
+                <img width={200} src={user.photo} alt={user.name}/>
+                <br/> {user.name}
+                <br/> {user.email}
+                <br/> {user.age}
+                <br/>{user.posts}
               </div>
-
-
+              <div onClick={() => this.props.push(`/users/${user.id}/edit`)}>
+                <img width={200} src={user.photo} alt={user.name}/>
+                <br/> {user.name}
+                <br/> {user.email}
+                <br/> {user.age}
+                <br/>{user.posts}
+              </div>
+              <div onClick={() => this.props.killUser(user)}>
+              </div>
             </div>)
           })
         }
@@ -65,6 +76,5 @@ class NewsFeed extends Component {
     </div>) } } const mapStateToProps = (state) => {return {users: state.users};{posts: state.posts}}
     export default connect(mapStateToProps, {
       push,
-      userPath,
-      singleUserPath,
-      saveNewUser, deletePost, editToggle, editPost })(NewsFeed)
+      singleUserPath, userPath,
+    killUser })(NewsFeed)

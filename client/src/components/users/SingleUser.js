@@ -6,11 +6,10 @@ import {singleUserPath, getSingleUser} from '../../actions/user.actions'
 import axios from 'axios'
 import Posts from '../posts/Posts'
 import EditPost from '../posts/EditPost'
-import PostsForm from '../posts/PostsForm'
-import Buttons from '../styles/Buttons'
+import NewPostForm from '../posts/NewPostForm'
 import Footer from '../styles/Footer'
 import NavBar from '../styles/NavBar'
-import {Image} from 'semantic-ui-react'
+import {Image, Buttons} from 'semantic-ui-react'
 
 const HomeContainer = styled.div `
   text-align: center;
@@ -57,24 +56,50 @@ const InfoContainer = styled.div `
 `
 class SingleUser extends Component {
 
+  componentWillMount() {
+    const userId = this.props.match.params.userId
+    this.props.singleUserPath(userId)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      showNewUser: {
+        id: this.props.match.params.userId,
+        name: nextProps.showNewUser.name,
+        age: nextProps.showNewUser.age,
+        email: nextProps.showNewUser.email,
+        photo: nextProps.showNewUser.photo,
+        password: nextProps.showNewUser.password
+      }
+    })
+  }
+  state ={
+    showNewUser: {
+      name:'',
+      age:'',
+      email:'',
+      photo:'',
+      password:''
+    }
+  }
+
   render() {
     return (<div>
       <HomeContainer>
       <NavBar/>
-      <ImageContainer className='pic' src={this.props.user.photo} alt={this.props.user.name}/>
+      <ImageContainer className='pic' src={this.state.showNewUser.photo} alt={this.props.showNewUser.name}/>
 
       {/* <SingleUserPage> */}
-        <h2>Hello, {this.props.user.name}!</h2>
+        <h2>Hello, {this.state.showNewUser.name}!</h2>
         <InfoContainer>
           <h4>Account Info
           </h4>
-          <h4>Age: {this.props.user.age}</h4>
-          <h4>Email: {this.props.user.email}</h4>
-          <h4>Posts: {this.props.user.post}</h4>
+          <h4>Age: {this.state.showNewUser.age}</h4>
+          <h4>Email: {this.state.showNewUser.email}</h4>
+          <h4>Posts: {this.state.showNewUser.post}</h4>
 
         </InfoContainer>
-        <Buttons />
-        <PostsForm key={this.props.user.id} />
+        {/* <NewPostForm key={this.state.showNewUser.id} /> */}
         {/* <Posts />
         <EditPost/> */}
       <Footer/>
@@ -82,15 +107,20 @@ class SingleUser extends Component {
     </div>)
   }
 }
-const mapStateToProps = (state, ownProps) => {
-  if (state.users.length === 0) {
-    //Get all the users from API when going directly to this page
-  }
-  const userId = ownProps.match.params.id
-  const user = state.users.find(user => {
-    return user.id === parseInt(userId)
-  })
-  console.log(user)
-  return {user}
+
+const mapStateToProps = (state) => {
+  return {showNewUser: state.users[0]}
 }
-export default connect(mapStateToProps, {push, singleUserPath, getSingleUser})(SingleUser)
+export default connect(mapStateToProps, {singleUserPath})(SingleUser)
+// const mapStateToProps = (state, ownProps) => {
+//   if (state.users.length === 0) {
+//     //Get all the users from API when going directly to this page
+//   }
+//   const userId = ownProps.match.params.id
+//   const user = state.users.find(user => {
+//     return user.id === parseInt(userId)
+//   })
+//   console.log(user)
+//   return {user}
+// }
+// export default connect(mapStateToProps, {push, singleUserPath, getSingleUser})(SingleUser)

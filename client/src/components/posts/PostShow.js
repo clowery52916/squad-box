@@ -2,7 +2,7 @@ mport React, {Component} from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
 import {getOnePostRoute} from '../../actions/post.actions.js'
-import Navbar from '../navbar/Navbar.js'
+import NavBar from '../styles/NavBar.js'
 
 class PostShow extends Component {
 

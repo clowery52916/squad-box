@@ -53,7 +53,7 @@ editPost
     e.preventDefault()
     const userId = this.state.userId
     const postUpdate = { ...this.state.user }
-    await axios.post(`/users/${userId}/post`, postUpdate)
+    await axios.post(`/users/user_id/post`, postUpdate)
     this.toggleEdit()
     await this.addPost()
   };
