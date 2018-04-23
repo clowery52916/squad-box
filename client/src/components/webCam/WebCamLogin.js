@@ -36,24 +36,24 @@ export default class WebCamLogin extends Component {
     this.setState({load: true})
     const photo = this.props
   }
-//
-//     axios.post(`https://api.kairos.com/enroll`, {
-//       image: photo,
-//       subject_id: this.state.name
-//     }, {
-//       // you have to add your secret credentials here
-//       // headers: {
-//       //   app_id: e70fee1f,
-//       //   app_key: 98112e824f82622206d370dae6ed74b9,
-//       // }
-//     }).then((response) => {
-//       // redux method for refining the JSON response is invoked
-//       this.props.getSingleUser(response.data);
-//       this.setState({load: false});
-//     });
-//   //
-//   // this.setState({userId: userId})
-// }
+
+    axios.post(`https://api.kairos.com/enroll`, {
+      image: photo,
+      subject_id: this.state.name
+    }, {
+      you have to add your secret credentials here
+      headers: {
+        app_id: <e70fee1f/>,
+        app_key: <98112e824f82622206d370dae6ed74b9/>,
+      }
+    }).then((response) => {
+      // redux method for refining the JSON response is invoked
+      this.props.getSingleUser(response.data);
+      this.setState({load: false});
+    });
+  //
+  // this.setState({userId: userId})
+}
 
          render() {
 

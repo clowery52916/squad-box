@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Webcam from 'react-webcam';
 import { connect } from 'react-redux';
-import { findUserByFace, startImageScan, clearData } from '../actions';
-import '../styles/register.css';
+import { findUserByFace, signUpWithFace, saveUserFace, clearUserData } from '../../actions/facial.actions';
+import styled from 'styled-components'
 
 // material-ui component
 import RaisedButton from 'material-ui/RaisedButton';
@@ -25,7 +25,7 @@ const style = {
 
 class Capture extends Component {
     componentDidMount() {
-        this.props.clearData();
+        this.props.clearUserData();
     }
 
     setRef(webcam) {
@@ -33,13 +33,13 @@ class Capture extends Component {
     }
 
     capture() {
-        const imageSrc = this.webcam.getScreenshot();
-        this.props.initiateCaptureLoader();
-        this.props.detectImage(imageSrc);
+        const imageSrc = this.webcam.saveUserFace();
+        this.props.cameraLoader();
+        this.props.recognizeUser(imageSrc);
     };
 
     render() {
-        console.log(this.props.userData.fetching);
+        console.log(this.props.findUserByFace.fetching);
 
         return (
             <div style={{ 'textAlign': 'center' }}>
@@ -58,11 +58,11 @@ class Capture extends Component {
                     top={0}
                     loadingColor="#ADD8E6"
                     status="loading"
-                    style={(this.props.userData.fetching === false) ? style.hide : style.refresh}
+                    style={(this.props.findUserByFace.fetching === false) ? style.hide : style.refresh}
                 />
                 <br />
                 <RaisedButton onClick={() => this.capture()} label="DETECT" primary={true} style={{ 'margin': 16 }} />
-                <UserData user={this.props.userData} />
+                <findUserByFace user={this.props.findUserByFace} />
             </div>
         );
     }
@@ -70,8 +70,8 @@ class Capture extends Component {
 
 function mapStateToProps(state) {
     return {
-        userData: state.userData
+        findUserByFace: state.findUserByFace
     };
 }
 
-export default connect(mapStateToProps, { detectImage, initiateCaptureLoader, clearData })(Capture);
+export default connect(mapStateToProps, { findUserByFace, signUpWithFace, saveUserFace, clearUserData })(Capture);

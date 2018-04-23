@@ -40,7 +40,7 @@ class SaveUserImage extends Component {
   };
 
   render() {
-    console.log(this.props.users.fetching);
+    // console.log(this.props.users.fetching);
 
     return (<div style={{
         'textAlign' : 'center'
