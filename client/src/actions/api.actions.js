@@ -1,23 +1,36 @@
-var request = new XMLHttpRequest();
+import axios from 'axios'
 
-request.open('POST', 'https://api.kairos.com/enroll');
-
-request.setRequestHeader('Content-Type', 'application/json');
-request.setRequestHeader('app_id', 'e70fee1f');
-request.setRequestHeader('app_key', '98112e824f82622206d370dae6ed74b9');
-
-request.onreadystatechange = function () {
-  if (this.readyState === 4) {
-    console.log('Status:', this.status);
-    console.log('Headers:', this.getAllResponseHeaders());
-    console.log('Body:', this.responseText);
+export function fetchUserImage () {
+  return {
+    type: 'SIGN_UP_WITH_FACE',
+    loading: true
   }
-};
+}
+export function fetchUserImageSuccess (user) {
+  return {
+    type: 'GET_ALL_CARDS',
+    user,
+    loading: false
+  }
+}
 
-var body = {
-  'image': 'http://media.kairos.com/kairos-elizabeth.jpg',
-  'subject_id': 'Elizabeth',
-  'gallery_name': 'MyGallery'
-};
+export function fetchUserImageError (err) {
+  return {
+    type: 'GET_ALL_CARDS_ERROR',
+    err,
+    loading: false
+  }
+}
 
-request.send(JSON.stringify(body));
+export function fetchUserImageFromApi () {
+  return async (dispatch) => {
+    dispatch(fetchUserImage())
+
+    try {
+      const response = await axios.get('https://api.kairos.com')
+      dispatch(fetchMagicSuccess(response.data.user))
+    } catch (err) {
+      dispatch(fetchUserImageError(err))
+    }
+  }
+}

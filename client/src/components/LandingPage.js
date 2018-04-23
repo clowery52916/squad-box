@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {Link} from 'react-router-dom'
 import {Button} from "semantic-ui-react";
 import WebCam from './webCam/WebCam'
-import WebCamLogin from './webCam/WebCamLogin'
 import SaveUserImage from './webCam/SaveUserImage'
 import Webcam_Image from './webCam/Webcam_Image'
 import Capture from './webCam/Capture'
