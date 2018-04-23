@@ -99,7 +99,7 @@ class SingleUser extends Component {
           <h4>Posts: {this.state.showNewUser.post}</h4>
 
         </InfoContainer>
-        {/* <NewPostForm key={this.state.showNewUser.id} /> */}
+        <NewPostForm key={this.state.id} />
         {/* <Posts />
         <EditPost/> */}
       <Footer/>

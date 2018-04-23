@@ -15,7 +15,16 @@ const Container = styled.div `
 `;
 
 class EditUser extends Component {
-
+  state = {
+    updateUserInfo: {
+      id: "",
+      name: "",
+      age: "",
+      email: "",
+      photo: "",
+      password: ""
+    }
+  }
   componentWillMount() {
     this
       .props
@@ -34,30 +43,21 @@ class EditUser extends Component {
       }
     })
   }
-  state = {
-    updateUserInfo: {
-      id: "",
-      name: "",
-      age: "",
-      email: "",
-      photo: "",
-      password: ""
-    }
-  }
 
-  handleChange = (event) => {
+
+  handleChange = (e) => {
     const updatedUser = {
       ...this.state.updateUserInfo
     }
-    const inputField = event.target.name
-    const inputValue = event.target.value
+    const inputField = e.target.name
+    const inputValue = e.target.value
     updatedUser[inputField] = inputValue
     this.setState({updateUserInfo: updatedUser})
   }
 
   handleEditUser = () => {
     this.props.saveEditUser(this.state.updateUserInfo).then((response) => {
-        (this.props.push(`/users`))
+        (this.props.push(`/users/${singleUserPath.id}`))
       })
   }
 

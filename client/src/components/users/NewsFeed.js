@@ -7,7 +7,7 @@ import {deletePost, editToggle, editPost, addPost} from '../../actions/post.acti
 import axios from 'axios'
 import NavBar from '../styles/NavBar'
 import Footer from '../styles/Footer'
-import Posts from '../posts/Posts'
+import NewPostForm from '../posts/NewPostForm'
 import {Button} from 'semantic-ui-react'
 
 const HomeContainer = styled.div `
@@ -70,7 +70,7 @@ class NewsFeed extends Component {
         }
 
       </div>
-      <Posts/>
+      <NewPostForm/>
       <Footer/>
     </HomeContainer>
     </div>) } } const mapStateToProps = (state) => {return {users: state.users};{posts: state.posts}}
