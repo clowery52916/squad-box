@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Webcam from 'react-webcam';
+import UserData from './user-data';
 import { connect } from 'react-redux';
-import { findUserByFace, startImageScan, clearData } from '../actions';
+import { detectImage, initiateCaptureLoader, clearData } from '../../actions/api.actions';
 import '../styles/register.css';
 
 // material-ui component

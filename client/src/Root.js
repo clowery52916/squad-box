@@ -15,7 +15,6 @@ import Posts from './components/posts/Posts'
 import PostsForm from './components/posts/PostsForm'
 import RegisterUserFace from './components/kairosApi/RegisterUserFace'
 import App from './components/App'
-
 const history = createHistory()
 const store = configureStore(history)
 console.log(store)
@@ -24,12 +23,11 @@ const Root = () => (
   <Provider store={store}>
     <ConnectedRouter history={history}>
       <div>
-
         <Route exact path="/" component={LandingPage}/>
         <Route exact path='/users' component={NewsFeed}/>
         <Route exact path='/users/:id' component={SingleUser}/>
         <Route exact path='/users/user_id/posts/' component={Posts} />
-      </div>
+          </div>
     </ConnectedRouter>
     </Provider>
       )

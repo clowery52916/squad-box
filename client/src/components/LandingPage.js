@@ -2,14 +2,14 @@ import React, {Component} from "react";
 import styled from "styled-components";
 import {Link} from 'react-router-dom'
 import {Button} from "semantic-ui-react";
-import WebCam from './webCam/WebCam'
-import WebCamLogin from './webCam/WebCamLogin'
 import LoginForm from './users/LoginForm'
 import SemanticGrid from "./styles/SemanticGrid";
 import NavBar from './styles/NavBar'
 import Footer from './styles/Footer'
 import RecognizeUserFace from './kairosApi/RecognizeUserFace'
 import RegisterUserFace from './kairosApi/RegisterUserFace'
+
+
 
 const LandingImage = styled.div `
   background-image: url("");
@@ -61,22 +61,21 @@ class Home extends Component {
         <LandingImage>
 
           <LandingText>
-            <WebCam/>
+
 
             <p>
               Real People. Real Life. Real Safe
             </p>
             <LoginForm/>
-            <WebCamLogin/>
+
             <br/>
           </LandingText>
         </LandingImage>
         <BodyContent>
           <SemanticGrid/>
         </BodyContent>
-        {/* <RegisterUserFace />
-        <RecognizeUserFace /> */
-        }
+       {/* <RegisterUserFace /> */}
+        {/* <RecognizeUserFace /> */}
         {/* getting an infinate loop on one of these pages, need to check it out tomorrow */}
 
       </HomeContainer>

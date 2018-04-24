@@ -1,11 +1,11 @@
-import { SAVE_USER_FACE } from '../actions/facial.actions';
+import { FETCH_GALLERY } from '/actions/api.actions';
 
-function saveUserFace(state = [], action) {
-      let initialState = {};
+let initialState = {};
 
+export default (state = initialState, action) => {
     console.log(action.payload);
     switch (action.type) {
-        case SAVE_USER_FACE:
+        case FETCH_GALLERY:
             let faces = [];
             // check for errors happening during fetching phase
             if (action.payload.data.Errors) {
@@ -18,5 +18,3 @@ function saveUserFace(state = [], action) {
             return state;
     }
 }
-
-export default saveUserFace

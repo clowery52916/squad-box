@@ -1,9 +1,8 @@
-import { SIGN_UP_WITH_FACE, CAMERA_LOADER, CLEAR_USER_DATA } from '../actions/facial.actions';
+import { RECOGNIZE_USER, CLEAR_DISPLAY } from '../actions/api.actions'
 
-function signUpWithFace(state = [], action) {
-
+export default (state = {}, action) => {
     switch (action.type) {
-        case SIGN_UP_WITH_FACE:
+        case RECOGNIZE_USER:
             let finalData = {
                 name: '',
                 faceID: '',
@@ -13,15 +12,16 @@ function signUpWithFace(state = [], action) {
             if (action.payload.Errors) {
                 finalData.message = 'error';
             } else if (action.payload.images['0'].transaction.status === 'success') {
+                finalData.name = action.payload.images['0'].transaction.subject_id;
+                finalData.faceID = action.payload.images['0'].transaction.face_id;
                 finalData.message = 'success';
             } else if (action.payload.images['0'].transaction.status === 'failure') {
                 finalData.message = 'failure';
             }
             return finalData;
-        case CLEAR_USER_DATA:
+        case CLEAR_DISPLAY:
             return {};
         default:
             return state;
     }
 }
-export default signUpWithFace

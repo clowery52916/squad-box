@@ -3,7 +3,6 @@ import {routerReducer as router} from 'react-router-redux' // we need this for r
 import users from './userIndex'
 import posts from './postReducer'
 import comments from './commentReducer'
-import visiblity from './visibilityReducer'
 import { locationReducer } from 'redux-history';
 
 

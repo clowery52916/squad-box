@@ -7,10 +7,9 @@ import axios from 'axios'
 import Posts from '../posts/Posts'
 import EditPost from '../posts/EditPost'
 import PostsForm from '../posts/PostsForm'
-import Buttons from '../styles/Buttons'
 import Footer from '../styles/Footer'
 import NavBar from '../styles/NavBar'
-import {Image} from 'semantic-ui-react'
+import {Image, Button} from 'semantic-ui-react'
 
 const HomeContainer = styled.div `
   text-align: center;
@@ -73,7 +72,6 @@ class SingleUser extends Component {
           <h4>Posts: {this.props.user.post}</h4>
 
         </InfoContainer>
-        <Buttons />
         <PostsForm key={this.props.user.id} />
         {/* <Posts />
         <EditPost/> */}
