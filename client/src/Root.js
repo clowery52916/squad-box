@@ -68,7 +68,6 @@ render() {
       <Route path='/recognize' render={(props) => <Recognize {...props}/>}/>
       <Route path='/register' render={(props) => <Register {...props}/>}/>
       {/* <Route exact="exact" path='/users' render={(props) => <NewsFeed {...props}/>}/> */}
-      {/* <Route path='**' render={(props) => <LandingPage {...props}/>}/> */}
 
 
     </div>

@@ -56,30 +56,15 @@ class Home extends Component {
 
   render() {
     return (<div>
+      <NavBar/>
       <HomeContainer>
-        <NavBar/>
-        <Register/>
-        <LandingImage>
-
-          <LandingText>
-
-
-            <p>
-              Real People. Real Life. Real Safe
-            </p>
+        <LandingText>
+          <Register/>
+          <BodyContent>
+            <SemanticGrid/>
             <LoginForm/>
-
-            <br/>
-          </LandingText>
-        </LandingImage>
-        <BodyContent>
-          <SemanticGrid/>
-        </BodyContent>
-        {/* <Register />
-        <RecognizeUserFace /> */
-        }
-        {/* getting an infinate loop on one of these pages, need to check it out tomorrow */}
-
+          </BodyContent>
+        </LandingText>
       </HomeContainer>
       <Footer/>
     </div>);

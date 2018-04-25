@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import Webcam from 'react-webcam';
-
-
-// material-ui component
-// import {Button} from 'sematic-ui-react'
-
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import axios from 'axios';
-
+import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { recognizeUser, clearDisplayData } from '../../actions/index';
-
 import UserRecognize from './user-recognize';
 
 // loader styling
@@ -77,25 +71,17 @@ class Recognize extends Component {
                 <Row>
                     <Col xs={12} md={4} mdOffset={4}>
                         <div style={{ 'textAlign': 'center' }}>
-                            <h3>DETECT FACE</h3>
+                            <h3>Let's make sure it's really you!</h3>
                             <Webcam
                                 audio={false}
                                 height={320}
                                 ref={this.setRef}
                                 screenshotFormat="image/png"
-                                width={320}
+                                width={520}
                             />
-                            {/* <RefreshIndicator
-                                className='css-loader'
-                                size={80}
-                                left={70}
-                                top={0}
-                                loadingColor="#ADD8E6"
-                                status="loading"
-                                style={(this.state.load === false) ? style.hide : style.refresh}
-                            /> */}
                             <br />
-                            <button onClick={this.capture} label="DETECT" primary={true} style={{ 'margin': 16 }} />
+                            <br/>
+                            <button onClick={this.capture} label="DETECT" primary={true}>Detect Face</button>
                             <UserRecognize detect={this.props.detData} />
                         </div>
                     </Col>

@@ -17,7 +17,7 @@ class UserRegister extends Component {
                     </p>
                 </div>);
         } else {
-            return <p><b>REGISTRATION STATUS</b> WILL APPEAR HERE. <br />Resetting the gallery would remove all the faces from the database. <b>Use it with caution.</b></p>
+            return <p>Status will apprear here shortly.</p>
         }
     }
 }

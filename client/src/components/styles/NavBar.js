@@ -56,6 +56,10 @@ class Navbar extends Component {
             <Link to="/">Home</Link>
             {/* link to home page */}
           </LinkMargin>
+          <LinkMargin>
+            {/* <Link to='/bottom'>Scroll Down to Login In</Link> */}
+            {/* link to all users */}
+          </LinkMargin>
         </LinkContainer>
       </div>
     </Nav>);

@@ -1,17 +1,40 @@
 import React, { Component } from 'react';
 import Webcam from 'react-webcam';
-
-
+import styled from 'styled-components'
 import axios from 'axios';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-
 import { connect } from 'react-redux';
 import { registerUser, clearDisplayData } from '../../actions/index';
-
 import UserRegister from './user-register';
-import { Input, Button } from 'semantic-ui-react'
+import { AwesomeButton } from 'react-awesome-button';
+import 'react-awesome-button/dist/styles.css';
+
 
 // loader styling
+const Input = styled.input`
+  padding: 0.5em;
+  margin: 0.5em;
+  color: rgb(74, 74, 74);
+  background: rgb(172, 172, 172);
+  border: none;
+  border-radius: 3px;
+`;
+const Button = styled.button`
+  position: relative;
+  background-color: rgb(74, 74, 74);
+  border-radius: 30%;
+  font-size: 10px;
+  color: #FFFFFF;
+  padding: 10px;
+  width: 150px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+
+`
 const style = {
     container: {
         position: 'absolute',
@@ -32,6 +55,7 @@ class Register extends Component {
 
         this.state = {
             username: '',
+            age:'',
             load: false
         };
     }
@@ -47,7 +71,7 @@ class Register extends Component {
     capture = () => {
 
         if (this.state.username === '' || this.state.username === ' ') {
-            alert('Username cannot be empty');
+            alert('name cannot be empty');
             return;
         }
 
@@ -60,7 +84,8 @@ class Register extends Component {
         axios.post(`https://api.kairos.com/enroll`, {
             gallery_name: 'allUsers',
             image: imageSrc,
-            subject_id: this.state.username
+            subject_id: this.state.username,
+            age: this.state.age
         }, {
                 headers: {
                     app_id: 'e70fee1f',
@@ -96,9 +121,10 @@ class Register extends Component {
             });
     }
 
-    handleUsername(e) {
+    handleChange(e) {
         this.setState({
-            username: e.target.value
+            username: e.target.value,
+            age: e.target.value
         });
     }
 
@@ -114,14 +140,15 @@ class Register extends Component {
                                 height={320}
                                 ref={this.setRef}
                                 screenshotFormat="image/png"
-                                width={320}
+                                width={520}
                             />
                             <br />
                             <div style={{ 'margin': '0 auto!important' }}>
                                 <Input
                                     hintText="provide identification name"
-                                    floatingLabelText="Username"
-                                    onChange={(event) => this.handleUsername(event)}
+                                    floatingLabelText="name"
+                                    placeholder='Name'
+                                    onChange={(event) => this.handleChange(event)}
                                 />
                             </div>
                             <br />
@@ -135,8 +162,8 @@ class Register extends Component {
                                 style={(this.state.load === false) ? style.hide : style.refresh}
                             /> */}
                             <br />
-                            <Button className='register-button' onClick={this.capture} label="REGISTER" primary={true} style={{ 'margin': 16 }} />
-                            <Button className='register-button' onClick={this.resetGallery} label="RESET GALLERY" primary={true} style={{ 'margin': 16 }} />
+
+                            <Button className='register-button' onClick={this.capture} label="REGISTER" primary={true} style={{ 'margin': 16 }} >Register Face</Button>
                             <UserRegister detect={this.props.regData} />
                         </div>
                     </Col>

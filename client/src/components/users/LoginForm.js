@@ -2,10 +2,11 @@ import React, {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import axios from 'axios'
 import styled from 'styled-components'
-import { Button, Form, Message } from 'semantic-ui-react'
+import { Form, Message } from 'semantic-ui-react'
 import {saveNewUser, saveEditUser, singleUserPath} from '../../actions/user.actions.js'
 import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
+
 
 const FormContainer = styled.div`
   width: 60vw;
@@ -23,6 +24,30 @@ color: #151515;
 width: 60%;
 border-radius: 6px;
 align-items: center;
+`
+const Input = styled.input`
+  padding: 0.5em;
+  margin: 0.5em;
+  color: rgb(74, 74, 74);
+  background: rgb(172, 172, 172);
+  border: none;
+  border-radius: 3px;
+`;
+const Button = styled.button`
+  position: relative;
+  background-color: rgb(74, 74, 74);
+  border-radius: 30%;
+  font-size: 10px;
+  color: #FFFFFF;
+  padding: 10px;
+  width: 150px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+
 `
 
 class LoginForm extends Component {
@@ -95,24 +120,28 @@ class LoginForm extends Component {
       <div>
       <form onSubmit={this.handleSubmit}>
         <div>
-          <label htmlFor="name">Name:  </label>
-          <input onChange={this.handleChange} name="name" type="text" value={this.state.name}/>
+          {/* <label htmlFor="name">Name:  </label> */}
+          <Input onChange={this.handleChange} name="name" type="text" value={this.state.name} placeholder='Name'/>
         </div>
         <div>
-          <label htmlFor="email">Email: </label>
-          <input onChange={this.handleChange} name="email" type="text" value={this.state.email}/>
+          {/* <label htmlFor="email">Email: </label> */}
+          <Input onChange={this.handleChange} name="email" type="text" value={this.state.email} placeholder='Email'/>
         </div>
         <div>
-          <label htmlFor="name">Password: </label>
-          <input onChange={this.handleChange} name="password" type="text" value={this.state.password}/>
+          {/* <label htmlFor="name">Password: </label> */}
+          <Input onChange={this.handleChange} name="password" type="text" value={this.state.password} placeholder='Password'/>
         </div>
         <div>
-          <label htmlFor="age">Age: </label>
-          <input onChange={this.handleChange} name="age" type="text" value={this.state.age}/>
+          {/* <label htmlFor="age">Age: </label> */}
+          <Input onChange={this.handleChange} name="age" type="text" value={this.state.age} placeholder='Age'/>
+        </div>
+        <div>
+          {/* <label htmlFor="photo">Profile pic: </label> */}
+          <Input onChange={this.handleChange} name="photo" type="text" value={this.state.photo} placeholder='Profile Pic'/>
         </div>
         <br/>
         <ButtonSpacing>
-        <button onClick={this.handleSignUp}>Log-in</button>
+        <Button onClick={this.handleSignUp}>Log-in</Button>
         </ButtonSpacing>
 
       </form>

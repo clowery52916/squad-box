@@ -5,6 +5,7 @@ import reducer from './reducers'
 import registerServiceWorker from './registerServiceWorker'
 import Webcam from 'react-webcam'
 
+
 ReactDOM.render(<Root />, document.getElementById('root'))
 registerServiceWorker()
 
