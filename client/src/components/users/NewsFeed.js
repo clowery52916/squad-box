@@ -22,7 +22,7 @@ const HomeContainer = styled.div `
 
 class NewsFeed extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.userPath()
     console.log(userPath)
   }
@@ -59,7 +59,7 @@ class NewsFeed extends Component {
         }
 
       </div>
-      <Posts/>
+      {/* <Posts/> */}
       <Footer/>
     </HomeContainer>
     </div>) } } const mapStateToProps = (state) => {return {users: state.users};{posts: state.posts}}
