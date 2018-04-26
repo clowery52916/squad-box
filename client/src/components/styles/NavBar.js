@@ -7,7 +7,10 @@ const Nav = styled.div `
   width: 100vw;
   background-color: #aaaaaa;
   color: white;
-  font-family: cursive;
+
+  font-size: 15px;
+  font-family: 'Molengo', sans-serif;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -16,13 +19,18 @@ const Nav = styled.div `
   a {
     color: white;
     margin: auto;
+    text-decoration: none;
   }
 `;
 
+const Logo = styled.div`
+  font-family: 'Sacramento', cursive;
+  font-size: 40px;
+`
 const LinkContainer = styled.div `
   display: flex;
   margin-right: 10px;
-  font-family: cursive;
+${'' /* font-family: 'Sacramento', cursive; */}
   color: inherit;
 `;
 
@@ -41,7 +49,7 @@ class Navbar extends Component {
     return (<Nav>
       <LogoFlex>
         <Link to="/">
-          <h2>SqaudBox</h2>
+          <Logo>SquadBox</Logo>
         </Link>
       </LogoFlex>
 

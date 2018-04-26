@@ -16,9 +16,10 @@ const HomeContainer = styled.div `
   text-align: center;
   overflow-y: scroll;
   overflow-x: hidden;
+  font-family: 'Molengo', sans-serif;
+
   background-color: #8f8d8d;
   color: rgba(#9a97b8, 0.61);
-  font-family: cursive;
   color: inherit;
 `;
 
@@ -37,7 +38,7 @@ const SingleUserPage = styled.div `
 const ImageContainer = styled.img `
     max-height: 30vh;
     width: 30vw;
-    border-radius: 6px;
+    border-radius: 10%;
     image-orientation: center;
     flex-basis: auto;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, .5);
@@ -52,7 +53,8 @@ const InfoContainer = styled.div `
   overflow-x:
    hidden;
    h3{
-     font-style: italic;
+     font-family: 'Molengo', sans-serif;
+
    }
 `
 class SingleUser extends Component {

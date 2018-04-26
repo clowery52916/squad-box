@@ -4,6 +4,7 @@ import Root from './Root'
 import reducer from './reducers'
 import registerServiceWorker from './registerServiceWorker'
 import Webcam from 'react-webcam'
+import './index.css'
 
 
 ReactDOM.render(<Root />, document.getElementById('root'))

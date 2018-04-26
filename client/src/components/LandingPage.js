@@ -11,6 +11,7 @@ import Footer from './styles/Footer'
 import Recognize from './kairosApi/Recognize'
 import Register from './kairosApi/Register'
 
+
 const LandingImage = styled.div `
   background-image: url("");
   background-size: cover;
@@ -35,10 +36,11 @@ const LandingText = styled.div `
   border-radius: 10px;
   font-family: cursive;
   color: inherit;
+    font-family: 'Molengo', sans-serif;
 
   LandingText.h1 {
     font-size: 30px;
-    font-family: cursive;
+    font-family: 'Molengo', sans-serif;
     color: inherit;
   }
 `;
@@ -51,6 +53,9 @@ const BodyContent = styled.div `
   text-align: center;
   margin: 20px auto;
 `;
+const LogoFont = styled.div`
+    font-family: 'Sacramento', cursive;
+`
 
 class Home extends Component {
 

@@ -19,10 +19,14 @@ const Input = styled.input`
   border: none;
   border-radius: 3px;
 `;
+const Font = styled.div`
+    font-family: 'Molengo', sans-serif;
+`
 const Button = styled.button`
   position: relative;
   background-color: rgb(74, 74, 74);
   border-radius: 20%;
+  font-family: 'Molengo', sans-serif;
   font-size: 10px;
   color: #FFFFFF;
   padding: 10px;
@@ -134,6 +138,7 @@ class Register extends Component {
             <Grid fluid>
                 <Row>
                     <Col xs={12} md={4} mdOffset={4}>
+                      <Font>
                         <div style={{ 'textAlign': 'center' }}>
                             <h3>Sign Up your Face!</h3>
                             <Webcam
@@ -166,7 +171,9 @@ class Register extends Component {
 
                             <Button className='register-button' onClick={this.capture} label="REGISTER" primary={true} style={{ 'margin': 16 }} >Register</Button>
                             <UserRegister detect={this.props.regData} />
+
                         </div>
+                        </Font>
                     </Col>
                 </Row>
             </Grid>

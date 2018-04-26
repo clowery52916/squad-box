@@ -4,9 +4,13 @@ import {Grid, Image} from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import styled from 'styled-components'
 
-const TextContainer = styled.div`
-  font-family: cursive;
+const TextContainer = styled.div `
+font-family: 'Molengo', sans-serif;
 
+
+`
+const LogoFont = styled.div `
+    font-family: 'Sacramento', cursive;
 `
 
 const SemanticGrid = () => (<Grid celled="celled" stackable="stackable">
@@ -14,12 +18,13 @@ const SemanticGrid = () => (<Grid celled="celled" stackable="stackable">
 
     <Grid.Column computer={13}>
       <TextContainer>
-      <h1>Squad Goals</h1>
-
-      <h3>Love the life you live</h3>
-      <br/>
-      <p>Safe space for kids of all ages! As long as your under 18!!.</p>
-      <p>Wafer wafer lemon drops lemon drops. Bear claw wafer oat cake wafer jelly-o sweet. Sweet roll I love cupcake. I love apple pie carrot cake sugar plum muffin bear claw I love I love. I love lemon drops gingerbread chocolate oat cake I love muffin. Lollipop sugar plum jelly beans I love. Macaroon I love gingerbread dessert. Chocolate bar dessert croissant bear claw pastry candy canes I love gummi bears.</p>
+        <LogoFont>
+          <h1>Squad Goals</h1>
+        </LogoFont>
+        <h3>Love the life you live</h3>
+        <br/>
+        <p>Safe space for kids of all ages! As long as your under 18!!.</p>
+        <p>Wafer wafer lemon drops lemon drops. Bear claw wafer oat cake wafer jelly-o sweet. Sweet roll I love cupcake. I love apple pie carrot cake sugar plum muffin bear claw I love I love. I love lemon drops gingerbread chocolate oat cake I love muffin. Lollipop sugar plum jelly beans I love. Macaroon I love gingerbread dessert. Chocolate bar dessert croissant bear claw pastry candy canes I love gummi bears.</p>
       </TextContainer>
     </Grid.Column>
   </Grid.Row>
@@ -29,8 +34,8 @@ const SemanticGrid = () => (<Grid celled="celled" stackable="stackable">
     </Grid.Column>
     <Grid.Column computer={10}>
       <TextContainer>
-      <h1>See Your Friends!</h1>
-      <p>You could see there was text coming out of her eyes, text coming out of her wherever. Lorem Ipsum's father was with Lee Harvey Oswald prior to Oswald's being, you know, shot. You have so many different things placeholder text has to be able to do, and I don't believe Lorem Ipsum has the stamina. I don't think anybody knows it was Russia that wrote Lorem Ipsum, but I don't know, maybe it was. It could be Russia, but it could also be China. It could also be lots of other people. It also could be some wordsmith sitting on their bed that weights 400 pounds. Ok?</p>
+        <h1>See Your Friends!</h1>
+        <p>Chocolate bar donut icing cookie danish chocolate bar donut liquorice. Liquorice lemon drops topping gingerbread chupa chups. Tiramisu chupa chups ice cream tiramisu dessert. Cake oat cake chocolate bar muffin. Gummi bears dessert toffee liquorice gummi bears danish halvah. Liquorice tart chupa chups oat cake tiramisu carrot cake. Cookie icing sugar plum donut soufflé. Chocolate bar liquorice pastry oat cake chupa chups oat cake cupcake chocolate cake gummies. Caramels donut marshmallow macaroon. Donut chocolate bar brownie wafer croissant. Chupa chups gummi bears jelly. Biscuit toffee toffee. Oat cake pie bear claw danish candy canes pastry toffee candy canes sugar plum. Cheesecake marshmallow gingerbread chocolate cake lemon drops fruitcake. Tootsie roll tootsie roll apple pie soufflé cotton candy cake candy. Dessert cake marshmallow donut caramels muffin gingerbread candy cheesecake. Jelly-o candy canes cupcake candy sweet roll cupcake halvah marshmallow icing.</p>
       </TextContainer>
     </Grid.Column>
     <Grid.Column computer={3}>

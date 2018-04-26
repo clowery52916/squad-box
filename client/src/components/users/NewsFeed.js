@@ -14,7 +14,8 @@ const HomeContainer = styled.div `
   overflow-x: hidden;
   background-color: #8f8d8d;
   color: rgba(#9a97b8, 0.61);
-  font-family: cursive;
+  font-family: 'Molengo', sans-serif;
+
   color: inherit;
 `;
 const Image = styled.img `
