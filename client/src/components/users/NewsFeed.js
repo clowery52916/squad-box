@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 import {push} from 'react-router-redux'
 import styled from 'styled-components'
 import {userPath, saveNewUser, singleUserPath} from '../../actions/user.actions.js'
-import {deletePost, editToggle, editPost, addPost} from '../../actions/post.actions.js'
 import axios from 'axios'
 import NavBar from '../styles/NavBar'
 import Footer from '../styles/Footer'
@@ -18,12 +17,18 @@ const HomeContainer = styled.div `
   font-family: cursive;
   color: inherit;
 `;
-
+const Image = styled.img `
+  border-radius: 50%;
+  float:inherit;
+`;
+const Heading = styled.div `
+  text-align: left;
+`
+// const TextContainer = styled.div`
+//   display: inline-block;
+// `
 
 class NewsFeed extends Component {
-
-
-
 
   componentDidMount() {
     this.props.userPath()
@@ -38,35 +43,41 @@ class NewsFeed extends Component {
   render() {
     return (<div>
       <HomeContainer>
-      <NavBar/>
+        <NavBar/>
 
-      <h3>Add some friends!</h3>
+        <h3>Add some friends!</h3>
 
-      <div>
+        <div>
 
-        {
-          this.props.users.map((userId) => {
-            return (<div key={userId}>
+          {
+            this.props.users.map((userId) => {
+              return (<div key={userId}>
 
-              <div onClick={() => this.props.history.push(`/users/${userId.id}`)}>
-                <img width={200} src={userId.photo} alt={userId.name}/>
-                <br/> {userId.name}
-                <br/> {userId.email}
-                <br/> {userId.age}
-                <br/>{userId.posts}
-              </div>
+                <div onClick={() => this.props.history.push(`/users/${userId.id}`)}>
+                  <h4>{userId.name}</h4>
+                  <Image width={100} src={userId.photo} alt={userId.name}></Image>
 
+                </div>
 
-            </div>)
-          })
-        }
+              </div>)
+            })
+          }
 
-      </div>
-      <Footer/>
-    </HomeContainer>
-    </div>) } } const mapStateToProps = (state) => {return {users: state.users};{posts: state.posts}}
-    export default connect(mapStateToProps, {
-      push,
-      userPath,
-      singleUserPath,
-      saveNewUser, deletePost, editToggle, editPost })(NewsFeed)
+        </div>
+        <Footer/>
+      </HomeContainer>
+    </div>)
+  }
+}
+const mapStateToProps = (state) => {
+  return {users: state.users};
+  {
+    posts : state.posts
+  }
+}
+export default connect(mapStateToProps, {
+  push,
+  userPath,
+  singleUserPath,
+  saveNewUser,
+})(NewsFeed)

@@ -70,14 +70,11 @@ class SingleUser extends Component {
           </h4>
           <h4>Age: {this.props.user.age}</h4>
           <h4>Password: {this.props.user.password}</h4>
+
           <h4>Email: {this.props.user.email}</h4>
           <h4>Posts: {this.props.user.post}</h4>
 
         </InfoContainer>
-        <Buttons />
-        <Posts key={this.props.user.id} />
-        {/* <Posts />
-        <EditPost/> */}
       <Footer/>
       </HomeContainer>
     </div>)

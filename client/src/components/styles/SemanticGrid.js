@@ -6,7 +6,7 @@ import styled from 'styled-components'
 
 const TextContainer = styled.div`
   font-family: cursive;
-  color: inherit;
+
 `
 
 const SemanticGrid = () => (<Grid celled="celled" stackable="stackable">

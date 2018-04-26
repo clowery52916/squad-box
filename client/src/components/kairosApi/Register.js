@@ -22,11 +22,12 @@ const Input = styled.input`
 const Button = styled.button`
   position: relative;
   background-color: rgb(74, 74, 74);
-  border-radius: 30%;
+  border-radius: 20%;
   font-size: 10px;
   color: #FFFFFF;
   padding: 10px;
-  width: 150px;
+  width: 75px;
+  height: 30px;
   text-align: center;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
@@ -163,7 +164,7 @@ class Register extends Component {
                             /> */}
                             <br />
 
-                            <Button className='register-button' onClick={this.capture} label="REGISTER" primary={true} style={{ 'margin': 16 }} >Register Face</Button>
+                            <Button className='register-button' onClick={this.capture} label="REGISTER" primary={true} style={{ 'margin': 16 }} >Register</Button>
                             <UserRegister detect={this.props.regData} />
                         </div>
                     </Col>

@@ -1,8 +1,12 @@
-mport React, {Component} from 'react'
+import React, {Component} from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
-import {getOnePostRoute} from '../../actions/post.actions.js'
-import Navbar from '../navbar/Navbar.js'
+import { Redirect } from 'react-router-dom'
+import {saveNewPost} from '../../actions/post.actions.js'
+import NavBar from '../styles/NavBar'
+import axios from 'axios'
+import SingleUser from '../users/SingleUser'
+
 
 class PostShow extends Component {
 
@@ -54,7 +58,7 @@ class PostShow extends Component {
 
   render() {
       if(this.state.redirectToUsers){
-          return <Redirect to='/users/userId' render={UserIndex}/>
+          return <Redirect to='/users/userId' render={SingleUser}/>
       }
       return (
           <div className='search list' >
@@ -90,4 +94,4 @@ const mapStateToProps = (state) => {
     return {posts: state.posts[0]}
 }
 
-export default connect(mapStateToProps, {getOnePostRoute})(PostShow);
+export default connect(mapStateToProps, {saveNewPost})(PostShow);

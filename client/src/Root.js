@@ -11,41 +11,37 @@ import LoginForm from './components/users/LoginForm'
 import NewsFeed from './components/users/NewsFeed'
 import SingleUser from './components/users/SingleUser'
 import Posts from './components/posts/Posts'
+import EditPost from './components/posts/EditPost'
+import PostShow from './components/posts/PostShow'
 import PostsForm from './components/posts/PostsForm'
 import Register from './components/kairosApi/Register'
 import Recognize from './components/kairosApi/Recognize'
 import styled from 'styled-components'
-import { Route, Switch, Link } from 'react-router-dom';
+import {Route, Switch, Link} from 'react-router-dom';
 
 const history = createHistory()
 const store = configureStore(history)
 console.log(store)
-
-
-
 
 class Root extends Component {
   state = {
     toggle: false
   };
 
+  toggleDrawerMenu() {
+    this.setState({
+      toggle: !this.state.toggle
+    });
+  }
 
-toggleDrawerMenu() {
-  this.setState({
-    toggle: !this.state.toggle
-  });
-}
-
-handleClose() {
-  this.setState({toggle: false});
-}
-render() {
-    return (
-
-<Provider store={store}>
-  <ConnectedRouter history={history}>
-    <div>
-      {/* <AppBar className='app-bar' title='SquadBox' onLeftIconButtonClick={() => this.toggleDrawerMenu()} zDepth={2}/>
+  handleClose() {
+    this.setState({toggle: false});
+  }
+  render() {
+    return (<Provider store={store}>
+      <ConnectedRouter history={history}>
+        <div>
+          {/* <AppBar className='app-bar' title='SquadBox' onLeftIconButtonClick={() => this.toggleDrawerMenu()} zDepth={2}/>
       <Drawer docked={false} width={200} open={this.state.toggle} onRequestChange={(toggle) => this.setState({toggle})}>
         <Link to={'/'} className='link'>
           <MenuItem onClick={() => this.handleClose()}>Home</MenuItem>
@@ -59,21 +55,23 @@ render() {
         <Link to={'/users'} className='link'>
           <MenuItem onClick={() => this.handleClose()}>NewsFeed</MenuItem>
         </Link>
-      </Drawer> */}
-      {/* <Route exact="exact" path='/' render={(props) => <LandingPage {...props}/>}/> */}
-      <Route exact="exact" path="/" component={LandingPage}/>
-      <Route exact="exact" path='/users' component={NewsFeed}/>
-      <Route exact="exact" path='/users/:id' component={SingleUser}/>
-      <Route exact="exact" path='/users/user_id/posts/' component={Posts}/>
-      <Route path='/recognize' render={(props) => <Recognize {...props}/>}/>
-      <Route path='/register' render={(props) => <Register {...props}/>}/>
-      {/* <Route exact="exact" path='/users' render={(props) => <NewsFeed {...props}/>}/> */}
+      </Drawer> */
+          }
+          {/* <Route exact="exact" path='/' render={(props) => <LandingPage {...props}/>}/> */}
+          <Route exact="exact" path="/" component={LandingPage}/>
+          <Route exact="exact" path='/users' component={NewsFeed}/>
+          <Route exact="exact" path='/users/:id' component={SingleUser}/>
+          <Route exact="exact" path='/users/user_id/posts/' component={Posts}/>
+          <Route path='/recognize' render={(props) => <Recognize {...props}/>}/>
+          <Route path='/register' render={(props) => <Register {...props}/>}/> {/* <Route exact="exact" path='/users' render={(props) => <NewsFeed {...props}/>}/> */}
+          <Route exact="exact" path="/users/:userId/posts/new" component={PostsForm}/>
+          <Route exact="exact" path="/users/:userId/posts/" component={Posts}/>
+          <Route exact="exact" path="/users/:userId/posts/:postId/edit" component={EditPost}/>
+          <Route exact="exact" path="/users/:userId/posts/:postId/show" component={PostShow}/>
 
-
-    </div>
-  </ConnectedRouter>
-</Provider>
-)
-}
+        </div>
+      </ConnectedRouter>
+    </Provider>)
+  }
 }
 export default Root;

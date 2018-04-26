@@ -2,11 +2,31 @@ import React, { Component } from 'react';
 import Webcam from 'react-webcam';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import axios from 'axios';
-import { Button } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { recognizeUser, clearDisplayData } from '../../actions/index';
 import UserRecognize from './user-recognize';
+import NavBar from '../styles/NavBar'
+import Footer from '../styles/Footer'
+import SemanticGrid from '../styles/SemanticGrid'
+import styled from 'styled-components'
 
+const Button = styled.button`
+  position: relative;
+  background-color: rgb(74, 74, 74);
+  border-radius: 20%;
+  font-size: 10px;
+  color: #FFFFFF;
+  padding: 10px;
+  width: 75px;
+  height:30px;
+  text-align: center;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  text-decoration: none;
+  overflow: hidden;
+  cursor: pointer;
+
+`
 // loader styling
 const style = {
     container: {
@@ -67,7 +87,8 @@ class Recognize extends Component {
 
     render() {
         return (
-            <Grid fluid>
+            <Grid>
+              <NavBar/>
                 <Row>
                     <Col xs={12} md={4} mdOffset={4}>
                         <div style={{ 'textAlign': 'center' }}>
@@ -81,11 +102,12 @@ class Recognize extends Component {
                             />
                             <br />
                             <br/>
-                            <button onClick={this.capture} label="DETECT" primary={true}>Detect Face</button>
+                            <Button onClick={this.capture} label="DETECT" primary={true}>Detect Face</Button>
                             <UserRecognize detect={this.props.detData} />
                         </div>
                     </Col>
                 </Row>
+                <Footer/>
             </Grid>
         );
     }

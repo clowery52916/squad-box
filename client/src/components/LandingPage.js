@@ -58,13 +58,12 @@ class Home extends Component {
     return (<div>
       <NavBar/>
       <HomeContainer>
-        <LandingText>
-          <Register/>
-          <BodyContent>
-            <SemanticGrid/>
-            <LoginForm/>
-          </BodyContent>
-        </LandingText>
+        <LandingText>Real people. Real Life. Real Safe</LandingText>
+        <Register/>
+        <BodyContent>
+          <SemanticGrid/>
+          <LoginForm/>
+        </BodyContent>
       </HomeContainer>
       <Footer/>
     </div>);

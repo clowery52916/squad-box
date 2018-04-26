@@ -40,7 +40,8 @@ const Button = styled.button`
   font-size: 10px;
   color: #FFFFFF;
   padding: 10px;
-  width: 150px;
+  width: 75px;
+  height:30px;
   text-align: center;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
@@ -69,17 +70,6 @@ class LoginForm extends Component {
       this.setState({redirectToAllUsers: true, createdUser: res.data})
     })
   }
-//   singleUserPath = () => {
-//     axios.get('/api/users/:id', {user: this.state.user}).then((res) => {
-//     this.setState({redirectToSingleUser: true, singleUser: res.data})
-//   })
-// }
-//
-// saveEditUser = () => {
-//   axios.patch('/api/users/:id', {editUser: this.state.editUser}).then((res) => {
-//     this.setState({ editUser: res.data})
-//   })
-// }
 
   handleChange = (e) => {
     const user = {
@@ -89,26 +79,11 @@ class LoginForm extends Component {
     this.setState({user})
     console.log('handleChange')
   }
-
-  // handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   this.newUser()
-  //   console.log('User submitted info')
-  // }
   handleSignUp = (e) => {
     e.preventDefault()
     this.saveNewUser()
     console.log('handleChange')
   }
-
-  // handleUpdate = (e) => {
-  //   const editUser = {
-  //     ...this.props.editUser
-  //
-  //   }
-  // console.log('handleUpdate')
-  // }
-
 
   render() {
     if (this.state.redirectToAllUsers) {
