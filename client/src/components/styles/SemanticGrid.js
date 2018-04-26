@@ -39,13 +39,13 @@ const SemanticGrid = () => (<Grid celled="celled" stackable="stackable">
       </TextContainer>
     </Grid.Column>
     <Grid.Column computer={3}>
-      <Image src='https://images.unsplash.com/photo-1472746729193-36ad213ac4a5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=27aecaf25f31cf45d2de3ad774dad6ed&auto=format&fit=crop&w=400&q=200'/>
+      <Image src='https://images.unsplash.com/photo-1472746729193-36ad213ac4a5?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=27aecaf25f31cf45d2de3ad774dad6ed&auto=format&fit=crop&w=400&q=100'/>
     </Grid.Column>
     <Grid.Column computer={3}>
-      <Image src='https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=891fe858de061305b9d58986c3970d60&auto=format&fit=crop&w=400&q=200'/>
+      <Image src='https://images.unsplash.com/photo-1517164850305-99a3e65bb47e?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=891fe858de061305b9d58986c3970d60&auto=format&fit=crop&w=400&q=100'/>
     </Grid.Column>
     <Grid.Column computer={3}>
-      <Image src='https://images.unsplash.com/photo-1501238295340-c810d3c156d2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6aa5a477df99c1cf12588ca8a0b03162&auto=format&fit=crop&w=400&q=200'/>
+      <Image src='https://images.unsplash.com/photo-1501238295340-c810d3c156d2?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6aa5a477df99c1cf12588ca8a0b03162&auto=format&fit=crop&w=400&q=100'/>
 
     </Grid.Column>
   </Grid.Row>
